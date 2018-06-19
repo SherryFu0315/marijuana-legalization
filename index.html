@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" media="screen" href="static/main.min.css" />
   <script src="static/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   <script src="static/papaparse.min.js"></script>
 </head>
 <body>
   <div id="app" class="container" v-cloak>
-    <article v-if="which && which >= 0 && which < 20">
+    <article v-if="which !== undefined && which >= 0 && which < 20">
       <h1>Cory Booker says Jeff Sessions's 'obsession with marijuana' puts him 'on the wrong side of history'</h1>
       <section class="meta">
         <img class="photo" src="static/author.webp">
@@ -53,8 +54,12 @@
       </section>
       <section class="comments">
         <div class="statement" v-if="which > 3">
-          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise. Due to limited resources, <u>we do not hire real humans, but use a bot to moderate comments for civility.</u></strong></p>
+          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise. Due to limited resources, <u>we do not hire real humans, but use a bot to moderate comments for civility.</u> Please follow our guidelines to ensure everyone has a positive experience.</strong></p>
           <p>The bot does not delete any posts, but highlight those it found suspicious. Unfortunately, the bot can make mistakes.  However, you can help improve our discussion by providing feedback to our bot manager.</p>
+          <span class="button text" @click="showGuideline = true">Click to read the comment guidelines</span>
+        </div>
+        <div class="statement" v-else>
+          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise. Due to limited resources, <u>we could not moderate your comments.</u> Please follow our guidelines to ensure everyone has a positive experience.</strong></p>
           <span class="button text" @click="showGuideline = true">Click to read the comment guidelines</span>
         </div>
         <div class="post-comment">
@@ -63,9 +68,7 @@
             <textarea ref="comment" cols="40" rows="3" placeholder="Post your comment here."></textarea>
           </div>
           <div class="row">
-            <span>
-              <input ref="commentEmail" type="email" placeholder="Your email address is required." v-model="userData.email">
-            </span>
+            <span>{{userData.email || 'Please log in first.'}}</span>
             <button class="button" @click="post()">Post</button>
           </div>
         </div>
@@ -74,7 +77,7 @@
             <img class="photo" src="static/user.png">
             <div class="details">
               <div class="row">
-                <span class="name">You<span class="time">{{comment.createdAt.slice(0, comment.createdAt.length - 3)}}</span></span>
+                <span class="name">You</span>
               </div>
               <div class="row text">{{comment.content}}</div>
             </div>
@@ -83,31 +86,39 @@
             <img class="photo" :src="'http://tinygraphs.com/squares/'+comment['user id']+'?theme=frogideas&numcolors=2'">
             <div class="details">
               <div class="row">
-                <span class="name">{{comment.nickname}}<span class="time">{{comment.create_time}}</span></span>
+                <span class="name">{{comment.nickname}}</span>
                 <template v-if="comment.hasBot">
                   <div v-if="comment.botInfo" class="bot large-screen">
-                    <span><img src="static/flag.png">{{comment.botInfo}}</span>
+                    <span><img src="static/flag.png">&nbsp;{{comment.botInfo}}</span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Oppose</button>
                   </div>
-                  <div v-else class="bot">
-                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">Report to the bot</button>
+                  <div v-else class="bot large-screen">
+                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
                     <span v-else>Reported</span>
                   </div>
                 </template>
+                <div v-else class="bot large-screen">
+                  <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report</button>
+                  <span v-else>Reported</span>
+                </div>
               </div>
               <div class="row small-screen">
                 <template v-if="comment.hasBot">
                   <div v-if="comment.botInfo" class="bot">
-                    <span><img src="static/flag.png">{{comment.botInfo}}</span>
+                    <span><img src="static/flag.png">&nbsp;&nbsp;{{comment.botInfo}}</span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Oppose</button>
                   </div>
                   <div v-else class="bot">
-                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">Report to the bot</button>
+                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
                     <span v-else>Reported</span>
                   </div>
                 </template>
+                <div v-else class="bot">
+                  <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report</button>
+                  <span v-else>Reported</span>
+                </div>
               </div>
               <div class="row text">{{comment.comment_text}}</div>
               <div class="row">
@@ -125,8 +136,8 @@
         <p>© 2018 by Katz Graduate School of Business, University of Pittsburgh.</p>
       </section>
       <div v-if="selectedComment !== null" class="modal">
-        <div class="bg" @click="closeModal"></div>
         <section class="replies">
+          <div class="close" @click="closeModal">X</div>
           <ul class="reply-list">
               <li class="comment">
                 <img class="photo" :src="'http://tinygraphs.com/squares/'+selectedComment['user id']+'?theme=frogideas&numcolors=2'">
@@ -134,16 +145,37 @@
                   <div class="row">
                     <span class="name">{{selectedComment.nickname}}</span>
                     <template v-if="selectedComment.hasBot">
+                      <div v-if="selectedComment.botInfo" class="bot large-screen">
+                        <span><img src="static/flag.png">&nbsp;{{selectedComment.botInfo}}</span>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree</button>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Oppose</button>
+                      </div>
+                      <div v-else class="bot large-screen">
+                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
+                        <span v-else>Reported</span>
+                      </div>
+                    </template>
+                    <div v-else class="bot large-screen">
+                      <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report</button>
+                      <span v-else>Reported</span>
+                    </div>
+                  </div>
+                  <div class="row small-screen">
+                    <template v-if="selectedComment.hasBot">
                       <div v-if="selectedComment.botInfo" class="bot">
-                        <span><img src="static/flag.png">{{selectedComment.botInfo}}</span>
+                        <span><img src="static/flag.png">&nbsp;&nbsp;{{selectedComment.botInfo}}</span>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree</button>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Oppose</button>
                       </div>
                       <div v-else class="bot">
-                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">Report to the bot</button>
+                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
                         <span v-else>Reported</span>
                       </div>
                     </template>
+                    <div v-else class="bot">
+                      <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report</button>
+                      <span v-else>Reported</span>
+                    </div>
                   </div>
                   <div class="row text">{{selectedComment.comment_text}}</div>
                   <div class="row">
@@ -166,11 +198,11 @@
                 </div>
               </div>
             </li>
-            <li v-for="(comment, idx) in userData.comments.filter((item) => item.mid)" :key="idx" class="comment">
+            <li v-for="(comment, idx) in userData.comments.filter((item) => item.mid === selectedComment.message_id)" :key="idx" class="comment">
               <img class="photo" src="static/user.png">
               <div class="details">
                 <div class="row">
-                  <span class="name">You<span class="time">{{comment.createdAt.slice(0, comment.createdAt.length - 3)}}</span></span>
+                  <span class="name">You</span>
                 </div>
                 <div class="row text">{{comment.content}}</div>
               </div>
@@ -182,9 +214,7 @@
               <textarea ref="reply" cols="40" rows="3" placeholder="Post your comment here."></textarea>
             </div>
             <div class="row">
-              <span>
-                Email: <input ref="replyEmail" type="email" placeholder="Please input your email" v-model="userData.email">
-              </span>
+              <span>{{userData.email || 'Please log in first.'}}</span>
               <button class="button" @click="post(selectedComment.message_id)">Post</button>
             </div>
           </div>
@@ -227,6 +257,17 @@
         </div>
       </div>
     </article>
+    <div v-show="showUserDialog" class="modal">
+      <div class="user">
+        <p>Please enter the same email address you set in the survey:</p>
+        <span>
+          Email address: <input ref="commentEmail" type="email" placeholder="Your email address is required." v-model="userData.email">
+        </span>
+        <div class="row">
+          <button class="button" @click="login">Log in</button>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="static/main.min.js"></script>
 </body>
