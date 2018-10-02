@@ -53,13 +53,9 @@
         <p>“I don’t know if he has or if he hasn’t. He may have already, but who knows? To me, it’s bigger than any individual in the attorney general’s division or the Senate,” said Booker. “This is really a larger issue of justice. It’s not about a plant ultimately. This is about what’s just and right in our country.”</p>
       </section>
       <section class="comments">
-        <div class="statement" v-if="which > 3">
-          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise. Due to limited resources, <u>we do not hire real humans, but use a bot to moderate comments for civility.</u> Please follow our guidelines to ensure everyone has a positive experience.</strong></p>
-          <p>The bot does not delete any posts, but highlight those it found suspicious. Unfortunately, the bot can make mistakes.  However, you can help improve our discussion by providing feedback to our bot manager.</p>
-          <span class="button text" @click="showGuideline = true">Click to read the comment guidelines</span>
-        </div>
-        <div class="statement" v-else>
-          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise. Due to limited resources, <u>we could not moderate your comments.</u> Please follow our guidelines to ensure everyone has a positive experience.</strong></p>
+        <div class="statement">
+          <p>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</p>
+          <p>Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</p>
           <span class="button text" @click="showGuideline = true">Click to read the comment guidelines</span>
         </div>
         <div class="post-comment">
@@ -90,16 +86,16 @@
             <div class="details">
               <div class="row">
                 <span class="name">{{comment.nickname}}</span>
-                <template v-if="comment.hasBot">
-                  <div v-if="comment.botInfo" class="bot large-screen">
-                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.botInfo}}</span>
-                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree with bot</button>
-                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree with bot</button>
-                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree with bot' : 'Disagree with bot'}}</span>
+                <template v-if="comment.hasFlag">
+                  <div v-if="comment.flagInfo" class="bot large-screen">
+                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}</span>
+                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
+                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
+                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}</span>
                     <button v-if="isFeedbackSet(comment.message_id)" class="button" @click="feedback('Change', comment.message_id)">Change</button>
                   </div>
                   <div v-else class="bot large-screen">
-                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
+                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{comment.hasBot && " to bot"}}</button>
                     <template v-else>
                       <span>Reported</span>
                       <button class="button" @click="report(comment.message_id, false)">Change</button>
@@ -115,16 +111,16 @@
                 </div>
               </div>
               <div class="row small-screen">
-                <template v-if="comment.hasBot">
-                  <div v-if="comment.botInfo" class="bot">
-                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{comment.botInfo}}</span>
-                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree with bot</button>
-                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree with bot</button>
-                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree with bot' : 'Disagree with bot'}}</span>
+                <template v-if="comment.hasFlag">
+                  <div v-if="comment.flagInfo" class="bot">
+                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{comment.flagInfo}}</span>
+                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
+                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
+                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}</span>
                     <button v-if="isFeedbackSet(comment.message_id)" class="button" @click="feedback('Change', comment.message_id)">Change</button>
                   </div>
                   <div v-else class="bot">
-                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
+                    <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{comment.hasBot && " to bot"}}</button>
                     <template v-else>
                       <span>Reported</span>
                       <button class="button" @click="report(comment.message_id, false)">Change</button>
@@ -159,16 +155,16 @@
                 <div class="details">
                   <div class="row">
                     <span class="name">{{selectedComment.nickname}}</span>
-                    <template v-if="selectedComment.hasBot">
-                      <div v-if="selectedComment.botInfo" class="bot large-screen">
-                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;{{selectedComment.botInfo}}</span>
-                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree with bot</button>
-                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree with bot</button>
-                        <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree with bot' : 'Disagree with bot'}}</span>
+                    <template v-if="selectedComment.hasFlag">
+                      <div v-if="selectedComment.flagInfo" class="bot large-screen">
+                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;{{selectedComment.flagInfo}}</span>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree{{selectedComment.hasBot && " with bot"}}</button>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree{{selectedComment.hasBot && " with bot"}}</button>
+                        <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{selectedComment.hasBot && " with bot"}}</span>
                         <button v-if="isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Change', selectedComment.message_id)">Change</button>
                       </div>
                       <div v-else class="bot large-screen">
-                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
+                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{selectedComment.hasBot && " to bot"}}</button>
                         <template v-else>
                           <span>Reported</span>
                           <button class="button" @click="report(comment.message_id, false)">Change</button>
@@ -184,16 +180,16 @@
                     </div>
                   </div>
                   <div class="row small-screen">
-                    <template v-if="selectedComment.hasBot">
-                      <div v-if="selectedComment.botInfo" class="bot">
-                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{selectedComment.botInfo}}</span>
-                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree with bot</button>
-                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree with bot</button>
-                        <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree with bot' : 'Disagree with bot'}}</span>
+                    <template v-if="selectedComment.hasFlag">
+                      <div v-if="selectedComment.flagInfo" class="bot">
+                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{selectedComment.flagInfo}}</span>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree{{selectedComment.hasBot && " with bot"}}</button>
+                        <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree{{selectedComment.hasBot && " with bot"}}</button>
+                        <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{selectedComment.hasBot && " with bot"}}</span>
                         <button v-if="isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Change', selectedComment.message_id)">Change</button>
                       </div>
                       <div v-else class="bot">
-                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report to the bot</button>
+                        <button v-if="!isReported(selectedComment.message_id)" class="button" @click="report(selectedComment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{selectedComment.hasBot && " to bot"}}</button>
                         <template v-else>
                           <span>Reported</span>
                           <button class="button" @click="report(comment.message_id, false)">Change</button>
@@ -252,8 +248,9 @@
       </div>
       <div v-show="showBotDialog" class="modal">
         <div class="feedback">
-          <p>Thanks for helping improving our comment system! We have received your feedback.</p>
-          <p>In this case, do you think the bot should be....</p>
+          <p>Thanks for helping managing our discussions. </p>
+          <p>Your feedback has been received :)</p>
+          <p style="color: #BD1515;">In this case, do you think {{c.hasBot ? 'the bot' : 'we'}} should be....</p>
           <div class="row">
             <button class="button" @click="moreFeedback('Stricter')">Stricter</button>
             <button class="button" @click="moreFeedback('Easier')">Easier</button>
@@ -299,6 +296,6 @@
       </div>
     </div>
   </div>
-  <script src="static/main.min.js"></script>
+  <script src="static/main.js"></script>
 </body>
 </html>
