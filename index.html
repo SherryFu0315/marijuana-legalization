@@ -64,7 +64,7 @@
             <span class="button text" @click="logout">Log out</span>
           </div>
           <div class="row">
-            <img src="static/user.png">
+            <img :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
             <textarea ref="comment" cols="40" rows="3" placeholder="Post your comment here."></textarea>
           </div>
           <div class="row">
@@ -72,23 +72,14 @@
           </div>
         </div>
         <ul class="comment-list">
-          <li v-for="(comment, idx) in userData.comments.filter((item) => !item.mid).reverse()" :key="idx" class="comment">
-            <img class="photo" src="static/user.png">
-            <div class="details">
-              <div class="row">
-                <span class="name">You</span>
-              </div>
-              <div class="row text">{{comment.content}}</div>
-            </div>
-          </li>
           <li v-for="comment in comments" :key="comment.message_id" class="comment">
-            <img class="photo" :src="'http://tinygraphs.com/squares/'+comment['user id']+'?theme=frogideas&numcolors=2'">
+            <img class="photo" :src="'http://tinygraphs.com/squares/'+comment['user_id']+'?theme=frogideas&numcolors=2'">
             <div class="details">
               <div class="row">
                 <span class="name">{{comment.nickname}}</span>
                 <template v-if="comment.hasFlag">
                   <div v-if="comment.flagInfo" class="bot large-screen">
-                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}</span>
+                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
                     <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}</span>
@@ -113,7 +104,7 @@
               <div class="row small-screen">
                 <template v-if="comment.hasFlag">
                   <div v-if="comment.flagInfo" class="bot">
-                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{comment.flagInfo}}</span>
+                    <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{comment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
                     <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}</span>
@@ -144,6 +135,15 @@
               </div>
             </div>
           </li>
+          <li v-for="(comment, idx) in userData.comments.filter((item) => !item.mid)" :key="idx" class="comment">
+            <img class="photo" src="static/user.png">
+            <div class="details">
+              <div class="row">
+                <span class="name">You</span>
+              </div>
+              <div class="row text">{{comment.content}}</div>
+            </div>
+          </li>
         </ul>
       </section>
       <div v-if="selectedComment !== null" class="modal">
@@ -151,13 +151,13 @@
           <div class="close" @click="closeModal">X</div>
           <ul class="reply-list">
               <li class="comment">
-                <img class="photo" :src="'http://tinygraphs.com/squares/'+selectedComment['user id']+'?theme=frogideas&numcolors=2'">
+                <img class="photo" :src="'http://tinygraphs.com/squares/'+selectedComment['user_id']+'?theme=frogideas&numcolors=2'">
                 <div class="details">
                   <div class="row">
                     <span class="name">{{selectedComment.nickname}}</span>
                     <template v-if="selectedComment.hasFlag">
                       <div v-if="selectedComment.flagInfo" class="bot large-screen">
-                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;{{selectedComment.flagInfo}}</span>
+                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;{{selectedComment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree{{selectedComment.hasBot && " with bot"}}</button>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree{{selectedComment.hasBot && " with bot"}}</button>
                         <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{selectedComment.hasBot && " with bot"}}</span>
@@ -182,7 +182,7 @@
                   <div class="row small-screen">
                     <template v-if="selectedComment.hasFlag">
                       <div v-if="selectedComment.flagInfo" class="bot">
-                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{selectedComment.flagInfo}}</span>
+                        <span v-if="!isFeedbackSet(selectedComment.message_id)"><img src="static/flag.png">&nbsp;&nbsp;{{selectedComment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Agree', selectedComment.message_id)">Agree{{selectedComment.hasBot && " with bot"}}</button>
                         <button v-if="!isFeedbackSet(selectedComment.message_id)" class="button" @click="feedback('Oppose', selectedComment.message_id)">Disagree{{selectedComment.hasBot && " with bot"}}</button>
                         <span v-if="isFeedbackSet(selectedComment.message_id)">{{isFeedbackSet(selectedComment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{selectedComment.hasBot && " with bot"}}</span>
@@ -294,6 +294,10 @@
           <button class="button" @click="login">Log in</button>
         </div>
       </div>
+    </div>
+    <div id="tooltip" v-show="showingTooltip">
+      <p><strong>The moderation decision is made based on our comment policy.</strong></p>
+      <p>- Don't make false statements, defame, or impersonate someone else.<br>- Don't copy and post others' material, trademarks, or intellectual property.<br>- Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.<br>- Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</p>
     </div>
   </div>
   <script src="static/main.min.js"></script>
