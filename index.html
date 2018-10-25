@@ -10,7 +10,6 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   <script src="static/papaparse.min.js"></script>
-  <style></style>
 </head>
 <body>
   <div id="app" class="container" v-cloak>
@@ -55,14 +54,20 @@
       </section>
       <section class="comments">
         <div class="statement">
-          <p>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</p>
-          <p>Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</p>
-          <span class="button text" @click="showGuideline = true">Click to read the comment guidelines</span>
+          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
+          <p><strong>Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</strong>
+          <p>Don't make false statements, defame, or impersonate someone else.<br>
+          Don't copy and post others' material, trademarks, or intellectual property.<br>
+          Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.<br>
+          Don't post profanity, obscenities, abusive language, or otherwise objectionable content.<br>
+          </p>
+          
+
+          <p><em>* We are not responsible or liable in any way for comments posted by its users. </em></p>
         </div>
         <div class="post-comment">
           <div class="row">
             <span>{{(validateEmail(userData.email) && userData.email) || 'Please log in first.'}}</span>
-            <span class="button text" @click="logout">Log out</span>
           </div>
           <div class="row">
             <img :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
@@ -137,7 +142,7 @@
             </div>
           </li>
           <li v-for="(comment, idx) in userData.comments.filter((item) => !item.mid)" :key="idx" class="comment">
-            <img class="photo" src="static/user.png">
+            <img class="photo" :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
             <div class="details">
               <div class="row">
                 <span class="name">You</span>
@@ -227,7 +232,7 @@
               </div>
             </li>
             <li v-for="(comment, idx) in userData.comments.filter((item) => item.mid === selectedComment.message_id)" :key="idx" class="comment">
-              <img class="photo" src="static/user.png">
+              <img class="photo" :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
               <div class="details">
                 <div class="row">
                   <span class="name">You</span>
@@ -238,7 +243,7 @@
           </ul>
           <div class="post-comment">
             <div class="row">
-              <img src="static/user.png">
+              <img :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
               <textarea ref="reply" cols="40" rows="3" placeholder="Post your comment here."></textarea>
             </div>
             <div class="row">
@@ -266,24 +271,6 @@
           </div>
         </div>
       </div>
-      <div v-show="showGuideline" class="modal">
-        <div class="guideline">
-          <h2>Guidelines for Comments & Replies</h2>
-          <p>To help keeping here a fun and safe place by remaining considerate and respectful when posting comments. Follow our guidelines to ensure everyone has a positive experience.</p>
-          <ul>
-              <li>Don't make false statements, defame, or impersonate someone else.</li>
-              <li>Don't copy and post others' material, trademarks, or intellectual property.</li>
-              <li>Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.</li>
-              <li>Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</li>
-              <li>Posting HTML, viruses, or other malicious code is a violation.</li>
-              <li>Protect privacy. Don't post phone numbers, email or mailing addresses, credit card information, etc.</li>
-          </ul>
-          <p>We are not responsible or liable in any way for comments posted by its users. </p>
-          <div class="row">
-            <button class="button" @click="showGuideline = false">Back to discussion</button>
-          </div>
-        </div>
-      </div>
     </article>
     <div v-show="showUserDialog" class="modal">
       <div class="user">
@@ -299,6 +286,16 @@
     <div id="tooltip" v-show="showingTooltip">
       <p><strong>The moderation decision is made based on our comment policy.</strong></p>
       <p>- Don't make false statements, defame, or impersonate someone else.<br>- Don't copy and post others' material, trademarks, or intellectual property.<br>- Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.<br>- Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</p>
+    </div>
+    <div v-show="showSlides" class="modal">
+      <div class="slides">
+        <img class="slide" :src="'static/training/'+which+'/Slide'+currentSlide+'.png'"/>
+        <div class="row">
+          <button class="button" @click="prevSlide" :disabled="currentSlide === 1">{{currentSlide === 1 ? "" : "Prev"}}</button>
+          <span>{{currentSlide}} / {{lastSlide}}</span>
+          <button class="button" @click="nextSlide">{{isLastSlide ? "Done" : "Next"}}</button>
+        </div>
+      </div>
     </div>
   </div>
   <script src="static/main.min.js"></script>
