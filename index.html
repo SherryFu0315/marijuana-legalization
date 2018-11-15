@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Weed is legal in 3 more states — here's what to expect from the new laws</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" media="screen" href="static/main.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/main.css" />
   <script src="static/vue.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
@@ -16,8 +16,9 @@
     <article v-if="which !== undefined && which >= 0 && which < 20">
       <h1>Weed is legal in 3 more states — here's what to expect from the new laws</h1>
       <section class="meta">
+        <!-- <img class="photo" src="static/author.webp"> -->
         <u class="name">Alexis Keenan</u>
-        <span class="source">Reporter</span>
+        <span class="source">Yahoo Finance</span>
         <time class="time">November 7, 2018</time>
       </section>
       <section class="content">
@@ -25,26 +26,28 @@
         <p>Michigan voters on Tuesday made the state the 10th in the U.S. — and the first in the Midwest — to legalize recreational marijuana. Voters in a second Midwest state, North Dakota, struck down a similar measure that would have legalized recreational use and expunged criminal records for prior marijuana offenders.</p>
         <p>Meanwhile, Missouri and Utah passed initiatives to legalize medical marijuana, joining 31 other states, Washington DC, Guam and Puerto Rico, that already permit medicinal use. Recreational marijuana is already legal in Washington, DC, and nine other states:  Washington, Oregon, Nevada, California, Colorado, Alaska, Vermont, Maine and Massachusetts.</p
         ><p>Here’s what to expect in the new laws:</p>
-        <img src="static/1.png">
+        <h2>Michigan</h2>
         <p>Michigan’s Proposal 1 permits use for adults 21 and older, yet allows municipalities to ban or restrict marijuana use and commercial enterprise within their boundaries. The new law will allow individuals to grow up to 12 cannabis plants at a time. Public consumption remains prohibited. Michigan has provided for one of the lowest cannabis tax levels in the nation with retailers to pay a 10% excise tax, and consumers picking up the state’s 6% sales tax.</p>
-        <p>While 56% of Michigan voted to support legalization, 44% opposed. The bill is expected to go into effect next year with sales beginning in 2020.</p>
+        <p>While 56% of Michigan voted to support legalization, 44% opposed. The bill is expected to go into effect next year with sales beginning in 2020. </p>
         <p>“I am proud of Michigan voters who have overwhelmingly supported this initiative and I am extremely excited about a future where law enforcement and our criminal justice system can focus on real crime and improve public safety,”  Barton Morris Junior, founder of Cannabis Legal Group, told Yahoo Finance.</p>
-         <img src="static/2.png">
-        <p>North Dakota’s Measure 3 failed to pass. The brake on legalization comes as less of a surprise, as critics warned the bill lacked regulatory and enforcement details. The state’s proposal contained no mandatory tax on marijuana transfers or sales, making revenue projections uncertain. Proponents of the measure viewed it as critical criminal justice reform, as the state has one of the lowest marijuana consumption rates, yet is among the highest for prosecuting marijuana offenses. </p>
-        <img src="static/3.png">
-        <p>Cole Haymond, an Advisor for Legalize ND, said North Dakota is also home to veterans who could benefit from easier access to the drug. “With a state with a high percentage of veterans it’s disappointing if it doesn’t pass,” Haymod said ahead of the vote.</p>
+        <h2>North Dakota</h2>
+        <p>North Dakota’s Measure 3 failed to pass. The brake on legalization comes as less of a surprise, as critics warned the bill lacked regulatory and enforcement details. The state’s proposal contained no mandatory tax on marijuana transfers or sales, making revenue projections uncertain. Proponents of the measure viewed it as critical criminal justice reform, as the state has one of the lowest marijuana consumption rates, yet is among the highest for prosecuting marijuana offenses. 
+        </p>
+        <img src="static/1.jpg">
+        <p>Cole Haymond, an Advisor for Legalize ND, said North Dakota is also home to veterans who could benefit from easier access to the drug. “With a state with a high percentage of veterans it’s disappointing if it doesn’t pass,” Haymod said ahead of the vote. </p>
         <p>Polls leading into midterm elections were mixed on the initiative. An October 11 – 14 poll found 51% of likely voters in favor of legalized recreational use, while an earlier October poll found 59% against the measure.</p>
         <p>While 59.5% of North Dakota voters ultimately said no to legalization, only 40.5% said yes.</p>
-         <img src="static/4.png">
+        <h2>Missouri</h2>
         <p>Missouri voters approved a ballot initiative to legalize medical marijuana, saying yes to  Amendment 2, but rejecting medical marijuana initiatives with varying tax rates and earmarks. The approved measure provides for a 4% tax on retail medical marijuana sales with proceeds benefitting a Missouri veteran health care fund. Voters rejected two other initiatives that looked to tax medical marijuana at 15% and 2% tax rates.</p>
         <p>While 57% of Missouri voters voted in favor of medical legalization under Amendment 2, 44% voted against. </p>
-         <img src="static/5.png">
+        <h2>Utah</h2>
         <p>Utah’s new law, based on Proposition 2, will permit medical use for medical card holders who have “qualifying illnesses.” It will also authorize a limited number of licensed facilities to cultivate, test and dispense marijuana, and permit medical card holders to grow up to 6 marijuana plants.</p>
         <p>While 53% of Utah voters supported medical legalization, 47% voted against.</p>
+        <p>Alexis Keenan is a New York-based reporter for Yahoo Finance. She previously produced live news for CNN and MSNBC and is a former litigation attorney.</p>
       </section>
       <section class="comments">
         <div class="statement">
-          <p><strong>We need your voice on marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
+          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
           <p><strong>Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</strong>
           <p>Don't make false statements, defame, or impersonate someone else.<br>
           Don't copy and post others' material, trademarks, or intellectual property.<br>
@@ -57,10 +60,10 @@
         </div>
         <div class="post-comment">
           <div class="row">
-            <span>{{(validateEmail(userData.email) && userData.email) || 'Please log in first.'}}</span>
+            <span>{{(userData.username) || 'Please log in first.'}}</span>
           </div>
           <div class="row">
-            <img :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
+            <img :src="(userData.username) ? 'http://tinygraphs.com/squares/'+userData.username+'?theme=frogideas&numcolors=2' : 'static/user.png'">
             <textarea ref="comment" cols="40" rows="3" placeholder="Post your comment here."></textarea>
           </div>
           <div class="row">
@@ -132,7 +135,7 @@
             </div>
           </li>
           <li v-for="(comment, idx) in userData.comments.filter((item) => !item.mid)" :key="idx" class="comment">
-             <img class="photo" :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
+            <img class="photo" :src="(userData.username) ? 'http://tinygraphs.com/squares/'+userData.username+'?theme=frogideas&numcolors=2' : 'static/user.png'">
             <div class="details">
               <div class="row">
                 <span class="name">You</span>
@@ -222,7 +225,7 @@
               </div>
             </li>
             <li v-for="(comment, idx) in userData.comments.filter((item) => item.mid === selectedComment.message_id)" :key="idx" class="comment">
-               <img class="photo" :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
+              <img class="photo" :src="(userData.username) ? 'http://tinygraphs.com/squares/'+userData.username+'?theme=frogideas&numcolors=2' : 'static/user.png'">
               <div class="details">
                 <div class="row">
                   <span class="name">You</span>
@@ -233,7 +236,7 @@
           </ul>
           <div class="post-comment">
             <div class="row">
-           <img :src="(validateEmail(userData.email) && userData.email) ? 'http://tinygraphs.com/squares/'+userData.email+'?theme=frogideas&numcolors=2' : 'static/user.png'">
+              <img :src="(userData.username) ? 'http://tinygraphs.com/squares/'+userData.username+'?theme=frogideas&numcolors=2' : 'static/user.png'">
               <textarea ref="reply" cols="40" rows="3" placeholder="Post your comment here."></textarea>
             </div>
             <div class="row">
@@ -264,9 +267,9 @@
     </article>
     <div v-show="showUserDialog" class="modal">
       <div class="user">
-        <p>Please enter the username you set in the survey:</p>
+        <p>Please enter an username:</p>
         <span>
-          Username: <input ref="commentEmail" type="email" placeholder="Your username is required." v-model="userData.email">
+          Username: <input ref="commentUsername" type="text" placeholder="Username is required." v-model="userData.username">
         </span>
         <div class="row">
           <button class="button" @click="login">Log in</button>
@@ -288,6 +291,6 @@
       </div>
     </div>
   </div>
-  <script src="static/main.min.js"></script>
+  <script src="static/main.js"></script>
 </body>
 </html>
