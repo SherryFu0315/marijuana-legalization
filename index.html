@@ -78,7 +78,7 @@
                     <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
-                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? ' ,this is abusive' : ' ,this is not abusive'}}</span>
+                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? ',this is abusive' : ',this is not abusive'}}</span>
                     <button v-if="isFeedbackSet(comment.message_id)" class="button" @click="feedback('Change', comment.message_id)">Change</button>
                   </div>
                   <div v-else class="bot large-screen">
@@ -243,15 +243,15 @@
         </section>
       </div>
       <div v-show="showBotDialog" class="modal">
-        <div class="Abusivefeedback">
+        <div class="feedback">
+          <div class="close" @click="closeModal">X</div>
           <p>Thanks for your help! </p>
           <p style="color: #BD1515;">Do you think the message is abusive or not?</p>
           <div class="row">
             <button class="button" @click="moreFeedback('Abusive')">Abusive</button>
             <button class="button" @click="moreFeedback('Not abusive')">Not abusive</button>
           </div>
-        </div>
-        <div class="StrictFeedback">
+          
           <p style="color: #BD1515;">In this case, do you think {{c.hasBot ? 'the bot' : 'the community'}} must be....</p>
           <div class="row">
             <button class="button" @click="moreFeedback('More strict')">More Strict</button>
@@ -261,6 +261,7 @@
       </div>
       <div v-show="showReportDialog" class="modal">
         <div class="reported">
+        <div class="close" @click="closeModal">X</div>
           <p>Thanks for reporting an abusive message!</p>
           <div class="row">
             <button class="button" @click="showReportDialog = false">Back to discussion</button>
@@ -271,9 +272,8 @@
     <div v-show="showUserDialog" class="modal">
       <div class="user">
         <p>Please enter the screen name you created in the survey:</p>
-        
         <span>
-          Your screen name: <input ref="commentUsername" type="text" placeholder="Screen name is required." v-model="userData.username">
+          Your screen name: <input ref="commentUsername" type="text" placeholder="Use your screen name to log in." v-model="userData.username">
         </span>
         <div class="row">
           <button class="button" @click="login">Log in</button>
