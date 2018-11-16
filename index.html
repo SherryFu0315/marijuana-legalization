@@ -276,10 +276,10 @@
         <p><strong>Please log in: </strong></p>
       
         <p><span>
-          Your screen name: <input ref="commentUsername" type="text" placeholder="Screen name is required" v-model="userData.username">
+          Your screen name: <input ref="commentUsername" type="text" placeholder="Screen name is required." v-model="userData.username">
         </span></p>
        
-        <p><span>Your password: <input ref="commentUsercode" type="text" placeholder="Check the survey page for the code" v-model="userData.password"></span></p>
+        <p><span>Your password: <input ref="commentUsercode" type="text" placeholder="Password is required." v-model="userData.password"></span></p>
         <div class="row">
           <button class="button" @click="login">Log in</button>
         </div>
