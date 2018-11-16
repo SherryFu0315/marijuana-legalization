@@ -78,7 +78,9 @@
                     <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
-                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? '<img src="static/flag.png">&nbsp; Agree' : 'Disagree'}}{{comment.hasBot && " with bot "}}{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? ' ,this is abusive' : ' ,this is not abusive'}}</span>
+                    
+                    
+                    <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? '<img src="static/flag.png">&nbsp;' : ''}}{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot "}}{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? ' ,this is abusive' : ' ,this is not abusive'}}</span>
                     <button v-if="isFeedbackSet(comment.message_id)" class="button" @click="feedback('Change', comment.message_id)">Change</button>
                   </div>
                   <div v-else class="bot large-screen">
