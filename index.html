@@ -273,11 +273,11 @@
     </article>
     <div v-show="showUserDialog" class="modal">
       <div class="user">
-        <p>Please log in: (Log in info can be found in the survey page)</p>
+        <p><strong>Please log in: </strong></p>
         <p><span>
-          Your screen name: <input ref="commentUsername" type="text" placeholder="Your created your own screen name." v-model="userData.username">
+          Your screen name: <input ref="commentUsername" type="text" placeholder="Your created your own screen name" v-model="userData.username">
         </span></p>
-        <p><span>Your password: <input ref="commentUsercode" type="text" placeholder="The code is given in the survey page." v-model="userData.password"></span></p>
+        <p><span>Your password: <input ref="commentUsercode" type="text" placeholder="See survey page for your code" v-model="userData.password"></span></p>
         <div class="row">
           <button class="button" @click="login">Log in</button>
         </div>
