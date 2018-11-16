@@ -47,16 +47,13 @@
       </section>
       <section class="comments">
         <div class="statement">
-          <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
-          <p><strong>Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</strong>
+          <p><strong>We need your voice. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
+          <p><strong>By posting comments you are accepting our commenting guidelines and you agree to the public display of your screen name and your commenting history.</strong>
           <p>Don't make false statements, defame, or impersonate someone else.<br>
           Don't copy and post others' material, trademarks, or intellectual property.<br>
           Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.<br>
           Don't post profanity, obscenities, abusive language, or otherwise objectionable content.<br>
           </p>
-          
-
-          <p><em>* We are not responsible or liable in any way for comments posted by its users. </em></p>
         </div>
         <div class="post-comment">
           <div class="row">
@@ -80,14 +77,14 @@
                   <div v-if="comment.flagInfo" class="bot large-screen">
                     <span v-if="!isFeedbackSet(comment.message_id)"><img src="static/flag.png">&nbsp;{{comment.flagInfo}}<sup><img class="help" @mouseenter="showTooltip" @mouseleave="hideTooltip" src="static/help.png"/></sup></span>
                     <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Agree', comment.message_id)">Agree{{comment.hasBot && " with bot"}}</button>
-                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree{{comment.hasBot && " with bot"}}</button>
+                    <button v-if="!isFeedbackSet(comment.message_id)" class="button" @click="feedback('Oppose', comment.message_id)">Disagree, this is not abusive{{comment.hasBot && " with bot"}}</button>
                     <span v-if="isFeedbackSet(comment.message_id)">{{isFeedbackSet(comment.message_id).feedback === 'Agree' ? 'Agree' : 'Disagree'}}{{comment.hasBot && " with bot"}}</span>
                     <button v-if="isFeedbackSet(comment.message_id)" class="button" @click="feedback('Change', comment.message_id)">Change</button>
                   </div>
                   <div v-else class="bot large-screen">
                     <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{comment.hasBot && " to bot"}}</button>
                     <template v-else>
-                      <span>Reported</span>
+                      <span>Reported as abusive</span>
                       <button class="button" @click="report(comment.message_id, false)">Change</button>
                     </template>
                   </div>
@@ -112,7 +109,7 @@
                   <div v-else class="bot">
                     <button v-if="!isReported(comment.message_id)" class="button" @click="report(comment.message_id)"><img src="static/flag-outline.png">&nbsp;Report Abuse{{comment.hasBot && " to bot"}}</button>
                     <template v-else>
-                      <span>Reported</span>
+                      <span><img src="static/flag.png">&nbsp;&nbsp;Reported</span>
                       <button class="button" @click="report(comment.message_id, false)">Change</button>
                     </template>
                   </div>
@@ -246,19 +243,26 @@
         </section>
       </div>
       <div v-show="showBotDialog" class="modal">
+      <div class="close" @click="closeModal">X</div>
         <div class="feedback">
-          <p>Thanks for helping managing our discussions. </p>
-          <p>Your feedback has been received :)</p>
-          <p style="color: #BD1515;">In this case, do you think {{c.hasBot ? 'the bot' : 'we'}} should be....</p>
+          <p>Thanks for your help! </p>
+          <p style="color: #BD1515;">Do you think the message is abusive or not?</p>
           <div class="row">
-            <button class="button" @click="moreFeedback('Stricter')">Stricter</button>
-            <button class="button" @click="moreFeedback('Easier')">Easier</button>
+            <button class="button" @click="moreFeedback('Abusive')">Abusive</button>
+            <button class="button" @click="moreFeedback('Not abusive')">Not abusive</button>
+          </div>
+          
+          <p style="color: #BD1515;">In this case, do you think {{c.hasBot ? 'the bot' : 'the community'}} must be....</p>
+          <div class="row">
+            <button class="button" @click="moreFeedback('More strict')">More Strict</button>
+            <button class="button" @click="moreFeedback('More Lenient')">More Lenient</button>
           </div>
         </div>
       </div>
       <div v-show="showReportDialog" class="modal">
+        <div class="close" @click="closeModal">X</div>
         <div class="reported">
-          <p>Thanks for helping improving our comment system! We have received your feedback.</p>
+          <p>Thanks for reporting an abusive message!</p>
           <div class="row">
             <button class="button" @click="showReportDialog = false">Back to discussion</button>
           </div>
@@ -267,9 +271,9 @@
     </article>
     <div v-show="showUserDialog" class="modal">
       <div class="user">
-        <p>Please enter an username:</p>
+        <p>Please enter the screen name you created in the survey:</p>
         <span>
-          Username: <input ref="commentUsername" type="text" placeholder="Username is required." v-model="userData.username">
+          Username: <input ref="commentUsername" type="text" placeholder="Use your screen name to log in." v-model="userData.username">
         </span>
         <div class="row">
           <button class="button" @click="login">Log in</button>
