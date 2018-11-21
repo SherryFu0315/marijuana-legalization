@@ -291,7 +291,7 @@
     </div>
     <div v-show="showSlides" class="modal" style="background-color: black;">
       <div class="slides">
-        <img class="slide" :src="'static/training/'+which+'/Slide'+currentSlide+'.bmp'"/>
+        <img class="slide" :src="'static/training/'+which+'/Slide'+currentSlide+'.jpg'"/>
         <div class="row">
           <button class="button" @click="prevSlide" :disabled="currentSlide === 1">{{currentSlide === 1 ? "" : "Prev"}}</button>
           <span>{{currentSlide}} / {{lastSlide}}</span>
