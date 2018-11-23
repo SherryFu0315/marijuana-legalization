@@ -1,0 +1,381 @@
+<template>
+  <div class="comment" ref="self" :class="{ reply: isReply }">
+    <div class="comment__main">
+      <img class="comment__main_avatar" :src="imageURL" />
+      <div class="comment__main__body">
+        <div class="comment___main__body__nickname__report">
+          <div class="comment__main__body__nickname">{{comment.nickname}}</div>
+          <div v-if="isReportEnabled && !comment.byCurrentUser" class="comment___main__body__report">
+            <div class="comment___main__body__report__info">
+              <template v-if="!comment.flagInfo">
+                <template v-if="reported === true">
+                  <img src="../assets/flag.png">
+                  {{reportInfoDisplay}}
+                </template>
+              </template>
+              <template v-else>
+                <img src="../assets/flag.png" v-show="attitude !== false">
+                {{flagInfoDisplay}}
+                <el-popover
+                  placement="top-end"
+                  width="300"
+                  trigger="hover"
+                  :offset="-100"
+                  v-show="attitude === undefined && reported === undefined">
+                  <img slot="reference" class="help" src="../assets/help.png">
+                  <p><strong>The moderation decision is made based on our comment policy.</strong></p>
+                  <ul>
+                    <li>Don't make false statements, defame, or impersonate someone else.</li>
+                    <li>Don't copy and post others' material, trademarks, or intellectual property.</li>
+                    <li>Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.</li>
+                    <li>Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</li>
+                  </ul>
+                </el-popover>
+              </template>
+            </div>
+            <template v-if="comment.flagInfo">
+              <div class="button danger" v-show="attitude === undefined" @click="confirm">Confirm</div>
+              <div class="button danger" v-show="attitude === undefined" @click="unflag">Unflag</div>
+            </template>
+            <template v-else>
+              <div v-if="reported === undefined" class="button" @click="report">
+                <img src="../assets/flag-outline.png">
+                {{reportInfoDisplay}}
+              </div>
+            </template>
+            <div class="button" v-show="attitude !== undefined || reported !== undefined" @click="change">Change</div>
+          </div>
+          <div v-if="comment.byCurrentUser" class="button" @click="showEditBox">Edit</div>
+        </div>
+        <div class="comment__main__body__content">{{editedContent}}</div>
+        <div class="comment__main__body__buttons" v-if="!comment.byCurrentUser">
+          <div class="button" :class="{ active: isShowingReplyBox }" @click="toggleReplyBox">Reply</div>
+          <div class="button" v-if="!isReply" :disabled="!hasReplies" @click="toggleReplies" :class="{ active: isShowingReplies }">Replies ({{repliesCount}})</div>
+          <div class="button" @click="voteLike"><img :class="{ active: like === true }" src="../assets/like.png"> ({{likeCount}})</div>
+          <div class="button" @click="voteDislike"><img :class="{ active: like === false }" src="../assets/dislike.png" > ({{dislikeCount}})</div>
+        </div>
+      </div>
+    </div>
+    <ReplyBox :user="user" :comment="comment" :parent-comment="parentComment" v-show="isShowingReplyBox" :fold="foldReplyBox"/>
+    <div v-if="!isReply && hasReplies && isShowingReplies" class="comment__replies">
+      <comment v-for="reply in replies" :key="reply.id" :comment="reply" :parent-comment="comment" :is-reply="true" :user="user" :saved-data="savedData"/>
+    </div>
+
+    <el-dialog title="Edit" :visible="isShowingEditBox" center :show-close="false">
+      <el-form>
+        <el-form-item label="Comment">
+          <el-input type="textarea" v-model="editingContent"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="edit">Submit</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import firebase from 'firebase'
+import { MessageBox } from 'element-ui'
+import ReplyBox from './ReplyBox.vue'
+import { getReplies } from '../data'
+import emitter from '../emitter'
+
+export default {
+  name: 'comment',
+  components: {
+    ReplyBox,
+  },
+  props: ['comment', 'parentComment', 'user', 'savedData'],
+  data() {
+    const { nickname, id } = this.user
+    const isReply = !!this.parentComment 
+
+    let replies = getReplies(this.comment.id);
+    let like = undefined
+    let attitude = undefined
+    let reported = undefined
+
+    if (this.savedData.reactions) {
+      if (!isReply) {
+        const found = this.savedData.reactions[this.comment.id]
+        if (found) {
+          like = found.like
+          attitude = found.attitude
+          reported = found.reported
+        }
+      } else {
+        const found = this.savedData.reactions[this.parentComment.id] && this.savedData.reactions[this.parentComment.id].replies[this.comment.id]
+        if (found) {
+          like = found.like
+          attitude = found.attitude
+          reported = found.reported
+        }
+      }
+    }
+
+    if (this.savedData.replies) {
+      Object.keys(this.savedData.replies).forEach((replyId) => {
+        const reply = this.savedData.replies[replyId]
+        if (!isReply && reply.commentId === this.comment.id) {
+          const content = Object.values(reply.content)[Object.values(reply.content).length - 1];
+
+          replies.push({
+            content,
+            id: replyId,
+            nickname,
+            uid: id,
+            like: 0,
+            dislike: 0,
+            type: 0,
+            byCurrentUser: true,
+          })
+        }
+      })
+    }
+
+    return {
+      isReportEnabled: true,
+      isShowingReplies: false,
+      isShowingReplyBox: false,
+      isShowingEditBox: false,
+      editedContent: this.comment.content,
+      editingContent: '',
+      replies,
+      reported, // reported as abuse?
+      attitude, // confirm or unflag
+      like, // like or dislike
+    }
+  },
+  computed: {
+    isReply() {
+      return !!this.parentComment
+    },
+    hasReplies() {
+      return this.replies.length > 0
+    },
+    imageURL() {
+      return `http://tinygraphs.com/squares/${this.comment.uid}?theme=frogideas&numcolors=2`
+    },
+    repliesCount() {
+      return this.replies.length
+    },
+    whom() {
+      return this.comment.type === 0 ?  '' : this.comment.type === 1 ? 'bot' : 'community'
+    },
+    flagInfoDisplay() {
+      return this.attitude === undefined ? this.comment.flagInfo : this.attitude === false ? `Reported to the ${this.whom}: You unflagged this message` : `Agree with the ${this.whom}: the post is abusive`
+    },
+    reportInfoDisplay() {
+      return this.reported ? 'Reported: this is abusive' : 'Report abusive'
+    },
+    likeCount() {
+      return parseInt(this.comment.like, 10) + (this.like === true ? 1 : 0)
+    },
+    dislikeCount() {
+      return parseInt(this.comment.dislike, 10) + (this.like === false ? 1 : 0)
+    },
+  },
+  methods: {
+    reactionsRef(endpoint) {
+      return (this.isReply ? `${this.user.id}/reactions/${this.parentComment.id}/replies/${this.comment.id}/` : `${this.user.id}/reactions/${this.comment.id}/`) + endpoint
+    },
+    report() {
+      MessageBox.alert(`Thank you for your help. Your reporting action has been reported${this.whom ? `to the ${this.whom}` : ''}.`, undefined, {
+        showConfirmButton: false,
+        closeOnClickModal: true,
+      });
+      firebase.database().ref(this.reactionsRef('reported')).set(true)
+      this.reported = true;
+    },
+    confirm() {
+      firebase.database().ref(this.reactionsRef('attitude')).set(true)
+      this.attitude = true;
+    },
+    unflag() {
+      MessageBox.alert(`Thank you for your help. Your unflagging action has been reported${this.whom ? `to the ${this.whom}` : ''}.`, undefined, {
+        showConfirmButton: false,
+        closeOnClickModal: true,
+      });
+      firebase.database().ref(this.reactionsRef('attitude')).set(false)
+      this.attitude = false;
+    },
+    change() {
+      if (this.attitude !== undefined) {
+        firebase.database().ref(this.reactionsRef('attitude')).set(null)
+        this.attitude = undefined;
+      }
+      if (this.reported !== undefined) {
+        firebase.database().ref(this.reactionsRef('reported')).set(null)
+        this.reported = undefined;
+      }
+    },
+    voteLike() {
+      this.like = this.like === true ? undefined : true;
+      firebase.database().ref(this.reactionsRef('like')).set(this.like)
+    },
+    voteDislike() {
+      this.like = this.like === false ? undefined : false;
+      firebase.database().ref(this.reactionsRef('like')).set(this.like)
+    },
+    toggleReplies() {
+      this.isShowingReplies = !this.isShowingReplies
+      firebase.database().ref(this.reactionsRef('viewReplies')).push((new Date()).toGMTString())
+    },
+    toggleReplyBox() {
+      this.isShowingReplyBox = !this.isShowingReplyBox
+    },
+    foldReplyBox() {
+      this.isShowingReplyBox = false
+    },
+    showEditBox() {
+      this.isShowingEditBox = true
+      this.editingContent = this.editedContent
+    },
+    edit() {
+      firebase.database().ref(`${this.user.id}/replies/${this.comment.id}/content`).push(this.editedContent)
+      this.editedContent = this.editingContent
+      this.isShowingEditBox = false
+    },
+  },
+  mounted() {
+    emitter.on('post', ({ commentId, replyId, comment }) => {
+      if (commentId === this.comment.id) {
+        const ref = `${this.user.id}/replies/`
+        const data = {
+          commentId,
+          content: {
+            [firebase.database().ref().child(ref).push().key]: comment.content,
+          },
+        }
+        if (replyId) {
+          data.replyId = replyId
+        }
+        const newKey = firebase.database().ref(ref).push().key
+        firebase.database().ref(ref + newKey).set(data).then(() => {
+          this.replies.push({
+            ...comment,
+            id: newKey,
+          })
+          this.isShowingReplies = true
+          this.$nextTick(() => {
+            const scrollingElement = (document.scrollingElement || document.body)
+            scrollingElement.scrollTo({
+              top: this.$refs.self.offsetTop + this.$refs.self.offsetHeight,
+              behavior: "smooth"
+            })
+          })
+        })
+      }
+    })
+  },
+}
+</script>
+
+<style scoped>
+.button {
+  display: flex;
+  flex-direction: row;
+
+  cursor: pointer;
+
+  height: 100%;
+  color: #606266;
+  font-size: 12px;
+  margin-right: 12px;
+}
+.button:disabled {
+  cursor: not-allowed;
+}
+.button:hover, .button.active {
+  color: #409eff;
+}
+.button > img {
+  width: 13px;
+  height: 13px;
+  margin-right: 4px;
+  filter: grayscale(10);
+}
+.button > img.active {
+  filter: unset;
+}
+.button.danger {
+  color: #BD1515;
+  text-decoration: underline;
+}
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+}
+.comment__main {
+  display: flex;
+  flex-direction: row;
+}
+.comment__main_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.reply .comment__main_avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+.comment__main__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  margin-left: 16px;
+}
+.comment___main__body__nickname__report {
+  display: flex;
+  flex-direction: row;
+}
+.comment__main__body__nickname {
+  color: #188fff;
+  font-size: 16px;
+  flex: 1;
+}
+.comment___main__body__report {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 12px;
+}
+.comment___main__body__report__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-right: 12px;
+  color: #BD1515;
+}
+.comment___main__body__report__info img {
+  width: 13px;
+  height: 13px;
+}
+.comment___main__body__report__info .help {
+  width: 12px;
+  height: 12px;
+
+  margin-left: 3px;
+  margin-top: -5px;
+}
+.comment__main__body__content {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.comment__main__body__buttons {
+  display: flex;
+  flex-direction: row;
+
+  margin: 8px 0;
+}
+.comment__replies {
+  margin-left: 56px;
+}
+</style>
