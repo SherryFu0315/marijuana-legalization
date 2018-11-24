@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     imageURL() {
-      return `http://tinygraphs.com/squares/${this.user.nickname}?theme=frogideas&numcolors=2`
+      return `https://ui-avatars.com/api/?name=${this.user.nickname}`
     },
     isReply() {
       return !!this.parentComment

@@ -3,13 +3,11 @@
     <Slides v-if="!isSlidesRead" :which="which" :done="markSlidesRead"/>
     <template v-else>
       <Login v-if="!isUserinfoSet" :saveUserinfo="setUserinfo"/>
-      <el-row :gutter="20" v-else>
-        <el-col :span="16" :offset="4">
+      <div class="main" v-else>
           <NewsArticle />
-          <Statement />
+          <Statement :which="which"/>
           <Comments :user="user" :savedData="savedData"/>
-        </el-col>
-      </el-row>
+      </div>
     </template>
   </div>
 </template>
@@ -69,7 +67,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .el-popover {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
@@ -79,5 +84,11 @@ export default {
   text-align: left;
   color: #2c3e50;
   font-size: 12px;
+}
+.main {
+  width: 100%;
+  max-width: 39rem;
+  display: flex;
+  flex-direction: column;
 }
 </style>

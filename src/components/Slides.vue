@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
     <div class="slides">
-      <img class="slide" :src="'static/training/'+which+'/Slide'+currentSlide+'.png'"/>
+      <img class="slide" :src="'static/training/'+which+'/Slide'+currentSlide+'.jpg'"/>
       <div class="row">
         <el-button icon="el-icon-arrow-left" circle :disabled="currentSlide === 1" @click="prev"></el-button>
         <span>{{currentSlide}} / {{lastSlide}}</span>
@@ -19,9 +19,9 @@ export default {
     let lastSlide;
 
     if (this.which === 0) {
-      lastSlide = 9
+      lastSlide = 8
     } else {
-      lastSlide = 10
+      lastSlide = 11
     }
 
     return {
@@ -67,9 +67,8 @@ export default {
 }
 .slides {
   width: 80vw;
-  max-height: 80vw;
+  max-height: 80vh;
   padding: 32px;
-  overflow: scroll;
   background-color: white;
 
   color: #2F2E2E;
@@ -81,11 +80,14 @@ export default {
 .slides > .slide {
   flex: 1;
   object-fit: contain;
+  max-height: calc(80vh - 72px);
 }
 .slides > .row {
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .slides > .row > button {
   font-size: 14px;

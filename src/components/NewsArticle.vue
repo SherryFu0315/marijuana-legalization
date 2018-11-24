@@ -18,7 +18,7 @@
       <h2>North Dakota</h2>
       <p>North Dakota’s Measure 3 failed to pass. The brake on legalization comes as less of a surprise, as critics warned the bill lacked regulatory and enforcement details. The state’s proposal contained no mandatory tax on marijuana transfers or sales, making revenue projections uncertain. Proponents of the measure viewed it as critical criminal justice reform, as the state has one of the lowest marijuana consumption rates, yet is among the highest for prosecuting marijuana offenses. 
       </p>
-      <img src="../assets/1.jpg">
+      <p class="image-container"><img src="../assets/1.jpg"></p>
       <p>Cole Haymond, an Advisor for Legalize ND, said North Dakota is also home to veterans who could benefit from easier access to the drug. “With a state with a high percentage of veterans it’s disappointing if it doesn’t pass,” Haymod said ahead of the vote. </p>
       <p>Polls leading into midterm elections were mixed on the initiative. An October 11 – 14 poll found 51% of likely voters in favor of legalized recreational use, while an earlier October poll found 59% against the measure.</p>
       <p>While 59.5% of North Dakota voters ultimately said no to legalization, only 40.5% said yes.</p>
@@ -40,14 +40,25 @@ export default {
 </script>
 
 <style scoped>
+.image-container {
+  text-align: center;
+}
 img {
-  width: 100%;
+  width: 80%;
 }
 h1 {
   font-size: 1.8em;
+  text-align: center;
+}
+h2 {
+  text-align: center;
 }
 .meta {
   font-size: 14px;
+  text-align: center;
+}
+p {
+  line-height: 1.2;
 }
 .name {
   margin-right: 16px;

@@ -155,7 +155,7 @@ export default {
       return this.replies.length > 0
     },
     imageURL() {
-      return `http://tinygraphs.com/squares/${this.comment.uid}?theme=frogideas&numcolors=2`
+      return `https://ui-avatars.com/api/?name=${this.comment.nickname}`
     },
     repliesCount() {
       return this.replies.length
@@ -181,7 +181,7 @@ export default {
       return (this.isReply ? `${this.user.id}/reactions/${this.parentComment.id}/replies/${this.comment.id}/` : `${this.user.id}/reactions/${this.comment.id}/`) + endpoint
     },
     report() {
-      MessageBox.alert(`Thank you for your help. Your reporting action has been reported${this.whom ? `to the ${this.whom}` : ''}.`, undefined, {
+      MessageBox.alert('Thanks for reporting an abusive message!', undefined, {
         showConfirmButton: false,
         closeOnClickModal: true,
       });

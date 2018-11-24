@@ -8,13 +8,19 @@
       Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.<br>
       Don't post profanity, obscenities, abusive language, or otherwise objectionable content.<br>
     </p>
-    <p><em>* We are not responsible or liable in any way for comments posted by its users. </em></p>
+    <p><em>* {{lastLine}}</em></p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'statement',
+  props: ['which'],
+  computed: {
+    lastLine() {
+      return this.which === 0 ? 'We do not moderate the posts.' : this.which < 5 ? 'An algorithm (i.e., a bot) automatically moderates the posts.' : 'The community moderates the posts.'
+    }
+  }
 }
 </script>
 
