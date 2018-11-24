@@ -43,7 +43,7 @@
                 {{reportInfoDisplay}}
               </div>
             </template>
-            <div class="button" v-show="attitude !== undefined || reported !== undefined" @click="change">Change</div>
+            <div class="button danger" v-show="attitude !== undefined || reported !== undefined" @click="change">Change</div>
           </div>
           <div v-if="comment.byCurrentUser" class="button" @click="showEditBox">Edit</div>
         </div>
