@@ -1,17 +1,17 @@
 
 
 <template>
-  <el-dialog title="Login" visible center>
+  <el-dialog visible center>
     <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item label="nickname" prop="nickname">
+      <el-form-item label="Screen Name" prop="nickname">
         <el-input v-model="form.nickname" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="password" prop="password">
+      <el-form-item label="Password" prop="password">
         <el-input type="password" v-model="form.password" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="submit">Submit</el-button>
+      <el-button type="primary" @click="submit">Sign in</el-button>
     </div>
   </el-dialog>
 </template>
