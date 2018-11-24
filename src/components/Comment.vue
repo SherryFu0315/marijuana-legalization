@@ -61,7 +61,7 @@
       <comment v-for="reply in replies" :key="reply.id" :comment="reply" :parent-comment="comment" :is-reply="true" :user="user" :saved-data="savedData"/>
     </div>
 
-    <el-dialog title="Edit" :visible="isShowingEditBox" center :show-close="false">
+    <el-dialog title="Edit" :visible="isShowingEditBox" center :before-close="hideEditBox">
       <el-form>
         <el-form-item label="Comment">
           <el-input type="textarea" v-model="editingContent"></el-input>
@@ -231,6 +231,9 @@ export default {
     showEditBox() {
       this.isShowingEditBox = true
       this.editingContent = this.editedContent
+    },
+    hideEditBox() {
+      this.isShowingEditBox = false
     },
     edit() {
       firebase.database().ref(`${this.user.id}/replies/${this.comment.id}/content`).push(this.editedContent)
