@@ -236,7 +236,7 @@ export default {
       this.isShowingEditBox = false
     },
     edit() {
-      firebase.database().ref(`${this.user.id}/replies/${this.comment.id}/content`).push(this.editedContent)
+      firebase.database().ref(`${this.user.id}/replies/${this.comment.id}/content`).push(this.editingContent)
       this.editedContent = this.editingContent
       this.isShowingEditBox = false
     },
