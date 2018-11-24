@@ -70,10 +70,12 @@ export default {
             ...comment,
             id: newKey,
           })
-          const scrollingElement = (document.scrollingElement || document.body)
-          scrollingElement.scrollTo({
-            top: scrollingElement.scrollHeight,
-            behavior: "smooth"
+          this.$nextTick(() => {
+            const scrollingElement = (document.scrollingElement || document.body)
+            scrollingElement.scrollTo({
+              top: scrollingElement.scrollHeight,
+              behavior: "smooth"
+            })
           })
         })
       }

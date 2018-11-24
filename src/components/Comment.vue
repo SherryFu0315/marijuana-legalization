@@ -1,5 +1,5 @@
 <template>
-  <div class="comment" ref="self" :class="{ reply: isReply }">
+  <div class="comment" :class="{ reply: isReply }">
     <div class="comment__main">
       <img class="comment__main_avatar" :src="imageURL" />
       <div class="comment__main__body">
@@ -258,13 +258,6 @@ export default {
             id: newKey,
           })
           this.isShowingReplies = true
-          this.$nextTick(() => {
-            const scrollingElement = (document.scrollingElement || document.body)
-            scrollingElement.scrollTo({
-              top: this.$refs.self.offsetTop + this.$refs.self.offsetHeight,
-              behavior: "smooth"
-            })
-          })
         })
       }
     })
