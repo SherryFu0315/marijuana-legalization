@@ -50,7 +50,7 @@
         <div class="comment__main__body__content">{{editedContent}}</div>
         <div class="comment__main__body__buttons" v-if="!comment.byCurrentUser">
           <div class="button" :class="{ active: isShowingReplyBox }" @click="toggleReplyBox">Reply</div>
-          <div class="button" v-if="!isReply" :disabled="!hasReplies" @click="toggleReplies" :class="{ active: isShowingReplies }">Replies ({{repliesCount}})</div>
+          <div class="button" v-if="!isReply && hasReplies" :disabled="!hasReplies" @click="toggleReplies" :class="{ active: isShowingReplies }">Replies ({{repliesCount}})</div>
           <div class="button" @click="voteLike"><img :class="{ active: like === true }" src="../assets/like.png"> ({{likeCount}})</div>
           <div class="button" @click="voteDislike"><img :class="{ active: like === false }" src="../assets/dislike.png" > ({{dislikeCount}})</div>
         </div>
