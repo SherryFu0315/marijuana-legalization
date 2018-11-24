@@ -68,8 +68,12 @@ export default {
 .reply-box__avatar__input img {
   width: 60px;
   height: 60px;
-  border-radius: 5px;
+  border-radius: 30px;
   margin-right: 16px;
+}
+.el-textarea {
+  width: unset !important;
+  flex: 1 !important;
 }
 .reply-box___buttons {
   display: flex;
@@ -91,5 +95,6 @@ export default {
 .reply-box:not(.main) .reply-box__avatar__input img {
   width: 45px;
   height: 45px;
+  border-radius: 22.5px;
 }
 </style>
