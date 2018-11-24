@@ -167,7 +167,7 @@ export default {
       return this.attitude === undefined ? this.comment.flagInfo : this.attitude === false ? `Reported to the ${this.whom}: You unflagged this message` : `Agree with the ${this.whom}: the post is abusive`
     },
     reportInfoDisplay() {
-      return this.reported ? 'Reported: this is abusive' : 'Report abusive'
+      return this.reported ? 'Reported: this is abusive' : 'Report abuse'
     },
     likeCount() {
       return parseInt(this.comment.like, 10) + (this.like === true ? 1 : 0)
