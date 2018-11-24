@@ -9,12 +9,12 @@
             <div class="comment___main__body__report__info">
               <template v-if="!comment.flagInfo">
                 <template v-if="reported === true">
-                  <img src="../assets/flag.png">
+                  <img class="flag" src="../assets/flag.png">
                   {{reportInfoDisplay}}
                 </template>
               </template>
               <template v-else>
-                <img src="../assets/flag.png" v-show="attitude !== false">
+                <img class="flag" src="../assets/flag.png" v-show="attitude !== false">
                 {{flagInfoDisplay}}
                 <el-popover
                   placement="top-end"
@@ -373,5 +373,8 @@ export default {
 }
 .comment__replies {
   margin-left: 56px;
+}
+.flag {
+  margin-right: 4px;
 }
 </style>
