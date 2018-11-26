@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  max-width: 39rem;
 }
 </style>
 

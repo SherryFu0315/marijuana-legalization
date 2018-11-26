@@ -1,7 +1,7 @@
 
 
 <template>
-  <el-dialog visible center>
+  <el-dialog visible center :show-close="false">
     <el-form :model="form" :rules="rules" ref="form">
       <el-form-item label="Screen Name" prop="nickname">
         <el-input v-model="form.nickname" autocomplete="off"></el-input>
@@ -28,8 +28,8 @@ export default {
       },
       rules: {
         nickname: [
-          { required: true, message: 'Please input nickname', trigger: 'blur' },
-          { min: 3, message: 'Invalid nickname', trigger: 'blur' },
+          { required: true, message: 'Please input screen name', trigger: 'blur' },
+          { min: 3, message: 'Invalid screen name', trigger: 'blur' },
         ],
         password: [
           { required: true, message: 'Please input password', trigger: 'blur' },

@@ -182,8 +182,10 @@ export default {
     },
     report() {
       MessageBox.alert('Thanks for reporting an abusive message!', undefined, {
-        showConfirmButton: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Back to discuttion',
         closeOnClickModal: true,
+        center: true,
       });
       firebase.database().ref(this.reactionsRef('reported')).set(true)
       this.reported = true;
@@ -193,9 +195,11 @@ export default {
       this.attitude = true;
     },
     unflag() {
-      MessageBox.alert(`Thank you for your help. Your unflagging action has been reported${this.whom ? `to the ${this.whom}` : ''}.`, undefined, {
-        showConfirmButton: false,
+      MessageBox.alert(`Thank you for your help. Your unflagging action has been reported${this.whom ? ` to the ${this.whom}` : ''}.`, undefined, {
+        showConfirmButton: true,
+        confirmButtonText: 'Back to discuttion',
         closeOnClickModal: true,
+        center: true,
       });
       firebase.database().ref(this.reactionsRef('attitude')).set(false)
       this.attitude = false;

@@ -54,12 +54,17 @@ export default {
         this.savedData = data
         this.isUserinfoSet = true
       })
+
+      FS.identify(id, {
+        displayName: nickname,
+        password,
+      });
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   text-rendering: optimizeLegibility;
@@ -76,6 +81,15 @@ export default {
   align-items: center;
   width: 100%;
 }
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 52rem;
+}
+</style>
+<style>
 .el-popover {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   text-rendering: optimizeLegibility;
@@ -84,11 +98,4 @@ export default {
   text-align: left;
   color: #2c3e50;
   font-size: 12px;
-}
-.main {
-  width: 100%;
-  max-width: 39rem;
-  display: flex;
-  flex-direction: column;
-}
-</style>
+}</style>
