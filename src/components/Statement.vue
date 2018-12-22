@@ -1,6 +1,6 @@
 <template>
   <div class="statement">
-    <p><strong>We need your voice on the marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
+    <p><strong>We need your voice on marijuana legalization. We welcome your on-topic commentary, criticism, and expertise.</strong></p>
     <p><strong>{{moderateText}} Please follow our guidelines to ensure everyone has a positive experience, and please help us moderate by reporting any inappropriate posts.</strong></p>
     <p>
       Don't make false statements, defame, or impersonate someone else.<br>
@@ -28,6 +28,6 @@ export default {
   padding: 12px 24px;
   border-radius: 8px;
   background-color: #e6f7ff;
-  font-size: 12px;
+  margin-top: 16px;
 }
 </style>

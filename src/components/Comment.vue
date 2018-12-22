@@ -183,7 +183,7 @@ export default {
     report() {
       MessageBox.alert('Thanks for reporting an abusive message!', undefined, {
         showConfirmButton: true,
-        confirmButtonText: 'Back to discuttion',
+        confirmButtonText: 'Back to discussion',
         closeOnClickModal: true,
         center: true,
       });
@@ -197,7 +197,7 @@ export default {
     unflag() {
       MessageBox.alert(`Thank you for your help. Your unflagging action has been reported${this.whom ? ` to the ${this.whom}` : ''}.`, undefined, {
         showConfirmButton: true,
-        confirmButtonText: 'Back to discuttion',
+        confirmButtonText: 'Back to discussion',
         closeOnClickModal: true,
         center: true,
       });

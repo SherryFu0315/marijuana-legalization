@@ -28,7 +28,7 @@
       <h2>Utah</h2>
       <p>Utah’s new law, based on Proposition 2, will permit medical use for medical card holders who have “qualifying illnesses.” It will also authorize a limited number of licensed facilities to cultivate, test and dispense marijuana, and permit medical card holders to grow up to 6 marijuana plants.</p>
       <p>While 53% of Utah voters supported medical legalization, 47% voted against.</p>
-      <p>Alexis Keenan is a New York-based reporter for Yahoo Finance. She previously produced live news for CNN and MSNBC and is a former litigation attorney.</p>
+      <p><em>Alexis Keenan is a New York-based reporter for Yahoo Finance. She previously produced live news for CNN and MSNBC and is a former litigation attorney.</em></p>
     </section>
   </article>
 </template>
@@ -59,6 +59,9 @@ h2 {
 }
 p {
   line-height: 1.2;
+}
+p:last-of-type {
+  margin-top: 40px;
 }
 .name {
   margin-right: 16px;
