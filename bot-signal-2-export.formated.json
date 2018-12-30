@@ -1,0 +1,287 @@
+[
+  {
+    "UID": "Xinyu-750182465803679",
+    "UGC": [],
+    "Interactions": []
+  },
+  {
+    "UID": "chengkang-123",
+    "Condition": "Ng",
+    "UGC": [
+      {
+        "ComID": "-LV0Bld4JbNBUmhLdCeP",
+        "ComContent": "test",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LV0Bld4JbNBUmhLdCeP",
+        "ComContent": "test1",
+        "ComType": "Edit"
+      }
+    ],
+    "Interactions": [
+      {
+        "ECID": "d4994c25-0466-45dc-8503-838c9fff741d",
+        "Reply": [
+          {
+            "RepId": "-LV0Gvv4yTJIfDZbk3_1",
+            "RepContent": "@Tim test",
+            "RepType": "New"
+          },
+          {
+            "RepId": "-LV0Gvv4yTJIfDZbk3_1",
+            "RepContent": "@Tim testwow",
+            "RepType": "Edit"
+          }
+        ],
+        "Replies": [
+          {
+            "ERID": "f431f588-cb7e-42e3-90d8-d122e6f7cff5",
+            "SubReply": {
+              "0": {
+                "SubRepId": "-LV0GxfPBqKgGXfl8l3N",
+                "SubRepContent": "@dtboco good",
+                "SubRepType": "New"
+              }
+            }
+          }
+        ],
+        "Like": false,
+        "Moderation": 1,
+        "ViewReplies": true
+      }
+    ]
+  },
+  {
+    "UID": "chengkang-123456",
+    "UGC": [],
+    "Interactions": [
+      {
+        "ECID": "d4994c25-0466-45dc-8503-838c9fff741d",
+        "Replies": [
+          {
+            "ERID": "f431f588-cb7e-42e3-90d8-d122e6f7cff5",
+            "Like": false,
+            "reported": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "UID": "abc-605141115751908",
+    "UGC": [
+      {
+        "ComID": "-LU7fR_MfxoWoSaJUfIZ",
+        "ComContent": "this dummy wont let me proceed. I don't know what to do next. Xinyu needs to fix this.",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LU7fUHh7onC7XTadbrF",
+        "ComContent": "WTF?!",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LU7fa5cwLB3LV29Ql11",
+        "ComContent": "Xinyu, get your act together. What is going on?!!!!!",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LU7flPAFlGkLjyKxLj8",
+        "ComContent": "Why is Xinyu doing this to us?! Dennis, do you have a clue?",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LU7fyGaM8lDBXiGxBtZ",
+        "ComContent": "This really sucks. Xinyu Xinyu Xinyu Xinyu Xinyu Xinyu Xinyu. Where do you want us to go?",
+        "ComType": "New"
+      }
+    ],
+    "Interactions": [
+      {
+        "ECID": "47c02c77-60b1-489b-aa8b-45e191b7a3e3",
+        "Reply": [
+          {
+            "RepId": "-LU7gibMxg2d_NbG6l6_",
+            "RepContent": "@Jack You stupid guy. Go reply to Eric. Don't spoil Xinyu's study.",
+            "RepType": "New"
+          }
+        ],
+        "Like": true,
+        "Moderation": 1,
+        "ViewReplies": false
+      }
+    ]
+  },
+  {
+    "UID": "abc-asdf",
+    "UGC": [],
+    "Interactions": []
+  },
+  {
+    "UID": "example_user-example",
+    "UGC": [
+      {
+        "ComID": "-LS863ZQhI76_B79HkLR",
+        "ComContent": "post",
+        "ComType": "New"
+      }
+    ],
+    "Interactions": []
+  },
+  {
+    "UID": "new-hello",
+    "UGC": [
+      {
+        "ComID": "-LUcgqDnaTomDIUrTH1f",
+        "ComContent": "this is a test",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LUcgqDnaTomDIUrTH1f",
+        "ComContent": "this is a test, i changed it",
+        "ComType": "Edit"
+      },
+      {
+        "ComID": "-LUcgvFK7fS5rxONN6PN",
+        "ComContent": "this is a second comment",
+        "ComType": "New"
+      }
+    ],
+    "Interactions": [
+      {
+        "ECID": "d02e7c98-23be-4603-adce-b3365fec5df4",
+        "Replies": [
+          {
+            "ERID": "cd1dd95f-04f8-4d07-8a8f-e6bc9240c17c",
+            "SubReply": {
+              "0": {
+                "SubRepId": "-LUclr1NTOEPhmLDsKrR",
+                "SubRepContent": "@R reply test",
+                "SubRepType": "New"
+              }
+            }
+          }
+        ],
+        "Like": false,
+        "Moderation": 2,
+        "ViewReplies": true
+      },
+      {
+        "ECID": "a1d3844b-c02c-40ac-9efb-928d882b54cd",
+        "Reply": [
+          {
+            "RepId": "-LUcnSew91m-syDSLkRC",
+            "RepContent": "@Pdei47 this post will be stored under \"Reply\"",
+            "RepType": "New"
+          }
+        ],
+        "Replies": [
+          {
+            "ERID": "fcc13567-a01d-4aff-bbff-a3d5142d7bac",
+            "SubReply": {
+              "0": {
+                "SubRepId": "-LUcnZ4EsRmB8KKpYPtN",
+                "SubRepContent": "@LlllllBbbbbb this post will be stored under \"Replies\"",
+                "SubRepType": "New"
+              }
+            }
+          }
+        ],
+        "Like": false,
+        "Moderation": 2,
+        "ViewReplies": true
+      }
+    ]
+  },
+  {
+    "UID": "sherry-1952364",
+    "UGC": [
+      {
+        "ComID": "-LS5ms8leVmdK6d_C6rc",
+        "ComContent": "test message",
+        "ComType": "New"
+      },
+      {
+        "ComID": "-LS5ms8leVmdK6d_C6rc",
+        "ComContent": "test message. Second time",
+        "ComType": "Edit"
+      }
+    ],
+    "Interactions": [
+      {
+        "ECID": "d4994c25-0466-45dc-8503-838c9fff741d",
+        "Replies": [
+          {
+            "ERID": "f431f588-cb7e-42e3-90d8-d122e6f7cff5",
+            "SubReply": {
+              "0": {
+                "SubRepId": "-LS5muNCWEN5xacbY-dN",
+                "SubRepContent": "@dtboco hello",
+                "SubRepType": "New"
+              },
+              "1": {
+                "SubRepId": "-LS5muNCWEN5xacbY-dN",
+                "SubRepContent": "@dtboco hello. Second edit",
+                "SubRepType": "Edit"
+              }
+            }
+          }
+        ],
+        "Like": false,
+        "Moderation": 2,
+        "ViewReplies": true
+      },
+      {
+        "ECID": "fe3f4540-4162-434c-bfdc-fc99a0c1772a",
+        "Reply": [
+          {
+            "RepId": "-LS5nIw5rIesrEKQfla7",
+            "RepContent": "@BenjaminF first reply to you!",
+            "RepType": "New"
+          }
+        ]
+      },
+      {
+        "ECID": "18f81213-7b42-4632-a431-f40cef9dd048",
+        "Replies": [
+          {
+            "ERID": "40968e61-b799-4b57-aad7-3496711287ac",
+            "SubReply": {
+              "0": {
+                "SubRepId": "-LS5nctslQ8X2MoAoI1A",
+                "SubRepContent": "@Gumby aSD",
+                "SubRepType": "New"
+              }
+            }
+          }
+        ],
+        "Like": false,
+        "Moderation": 3,
+        "ViewReplies": true
+      }
+    ]
+  },
+  {
+    "UID": "textusername-125697855",
+    "UGC": [
+      {
+        "ComID": "-LUcIeX5Y_Ga8pg8c8jk",
+        "ComContent": "test",
+        "ComType": "New"
+      }
+    ],
+    "Interactions": []
+  },
+  {
+    "UID": "theboss-223080272749808",
+    "UGC": [
+      {
+        "ComID": "-LUNXHX90uj2XZOp1ld0",
+        "ComContent": "You dummy, don't dope the bummy",
+        "ComType": "New"
+      }
+    ],
+    "Interactions": []
+  }
+]
