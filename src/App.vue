@@ -29,7 +29,7 @@ export default {
     Statement,
     Comments,
   },
-  props: ['which'],
+  props: ['which', 'condition'],
   data() {
     return {
       isSlidesRead: false,
@@ -49,13 +49,15 @@ export default {
     setUserinfo(nickname, password) {
       const id = btoa(`${nickname}-${password}`)
       this.user = { nickname, password, id }
-      firebase.database().ref(id).once('value').then((snapshot) => {
-        const data = snapshot.val() || {}
-        this.savedData = data
-        this.isUserinfoSet = true
+      firebase.database().ref(`${id}/condition`).set(this.condition).then(() => {
+        firebase.database().ref(id).once('value').then((snapshot) => {
+          const data = snapshot.val() || {}
+          this.savedData = data
+          this.isUserinfoSet = true
+        })
       })
 
-      FS.identify(id, {
+      window.FS.identify(id, {
         displayName: nickname,
         password,
       });

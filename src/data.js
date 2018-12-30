@@ -55,14 +55,18 @@ const comments = []
 const replies = {}
 
 export default () => new Promise((resolve) => {
-  const which = parseInt(atob(getQueryVariable('id')), 10)
+  const id = getQueryVariable('id')
+  const which = parseInt(atob(id), 10)
   const c = list[which]
 
   let isCommentsLoaded = false
   let isRepliesLoaded = false
   const finished = () => {
     if (isCommentsLoaded && isRepliesLoaded) {
-      return resolve(which)
+      return resolve({
+        which,
+        condition: id,
+      })
     }
     return
   }

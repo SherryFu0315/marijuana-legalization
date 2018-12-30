@@ -37,11 +37,12 @@ const config = {
 }
 firebase.initializeApp(config)
 
-loadData().then((which) => {
+loadData().then(({ which, condition }) => {
   new Vue({
     render: h => h(App, {
       props: {
         which,
+        condition,
       },
     }),
   }).$mount('#app')
