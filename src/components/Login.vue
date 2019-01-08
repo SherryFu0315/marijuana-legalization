@@ -42,7 +42,7 @@ export default {
     submit() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.saveUserinfo(this.form.nickname, this.form.password)
+          this.saveUserinfo(this.form.nickname.trim(), this.form.password.trim())
         } else {
           return false
         }
