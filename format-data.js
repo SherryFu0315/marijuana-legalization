@@ -96,9 +96,15 @@ function format(data) {
       let foundInteractionItem = Interactions.find((interaction) => interaction.ECID === commentId)
 
       if (foundInteractionItem) {
-        foundInteractionItem.Like = !!reaction.like
-        foundInteractionItem.Moderation = reaction.reported ? 3 : reaction.attitude ? 1 : 2
-        foundInteractionItem.ViewReplies = !!reaction.viewReplies
+        if (reaction.like !== undefined) {
+          foundInteractionItem.Like = !!reaction.like
+        }
+        if (reaction.reported !== undefined || reaction.attitude !== undefined) {
+          foundInteractionItem.Moderation = reaction.reported ? 3 : reaction.attitude ? 1 : 2
+        }
+        if (reaction.viewReplies !== undefined) {
+          foundInteractionItem.ViewReplies = !!reaction.viewReplies
+        }
 
         if (!Interactions.Replies) {
           Interactions.Replies = []
@@ -120,16 +126,30 @@ function format(data) {
       } else {
         const newEntry = {
           ECID: commentId,
-          Replies: [],
         }
+        if (reaction.like !== undefined) {
+          newEntry.Like = !!reaction.like
+        }
+        if (reaction.reported !== undefined || reaction.attitude !== undefined) {
+          newEntry.Moderation = reaction.reported ? 3 : reaction.attitude ? 1 : 2
+        }
+        if (reaction.viewReplies !== undefined) {
+          newEntry.ViewReplies = !!reaction.viewReplies
+        }
+
         Object.entries(reaction.replies || {}).forEach(([replyId, replyReaction]) => {
+          if (newEntry.Replies === undefined) {
+            newEntry.Replies = []
+          }
+
           newEntry.Replies.push({
             ERID: replyId,
             Like: !!replyReaction.like,
             reported: !!replyReaction.reported,
           })
         })
-        if (newEntry.Replies.length > 0) {
+
+        if (newEntry.Replies !== undefined || newEntry.Like !== undefined || newEntry.Moderation !== undefined || newEntry.ViewReplies !== undefined) {
           Interactions.push(newEntry)
         }
       }
