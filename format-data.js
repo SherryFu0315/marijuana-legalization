@@ -96,6 +96,10 @@ function format(data) {
       let foundInteractionItem = Interactions.find((interaction) => interaction.ECID === commentId)
 
       if (foundInteractionItem) {
+        foundInteractionItem.Like = null
+        foundInteractionItem.Moderation = null
+        foundInteractionItem.ViewReplies = null
+
         if (reaction.like !== undefined) {
           foundInteractionItem.Like = !!reaction.like
         }
@@ -126,7 +130,12 @@ function format(data) {
       } else {
         const newEntry = {
           ECID: commentId,
+          Like: null,
+          Moderation: null,
+          ViewReplies: null,
+          Replies: [],
         }
+
         if (reaction.like !== undefined) {
           newEntry.Like = !!reaction.like
         }
@@ -138,10 +147,6 @@ function format(data) {
         }
 
         Object.entries(reaction.replies || {}).forEach(([replyId, replyReaction]) => {
-          if (newEntry.Replies === undefined) {
-            newEntry.Replies = []
-          }
-
           newEntry.Replies.push({
             ERID: replyId,
             Like: !!replyReaction.like,
@@ -149,7 +154,7 @@ function format(data) {
           })
         })
 
-        if (newEntry.Replies !== undefined || newEntry.Like !== undefined || newEntry.Moderation !== undefined || newEntry.ViewReplies !== undefined) {
+        if (newEntry.Replies.length > 0 || newEntry.Like !== undefined || newEntry.Moderation !== undefined || newEntry.ViewReplies !== undefined) {
           Interactions.push(newEntry)
         }
       }
