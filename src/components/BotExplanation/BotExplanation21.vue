@@ -9,8 +9,8 @@
       <li>Comment classified as not insightful by the bot when it really is insightful ("false positives")</li>
       <li>Comment classified as insightful by the bot when in reality the comment is not ("false negatives")</li>
     </ul>
-    <img src="static/study2-1.jpg"/>
     <p>In this case, we can tell the bot indeed helps pick an insightful comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
+    <img src="static/study2-1.jpg"/>
   </article>
 </template>
 

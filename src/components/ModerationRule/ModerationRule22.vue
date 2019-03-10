@@ -13,9 +13,9 @@
     <p><span class="highlight">Comment - 1:</span> "Climate change is happening and it's not changing in our favor. If you think differently you're an idiot.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
     <p><span class="highlight">Comment - 2:</span> "Clearly man made, but unsure of its extent and whether anything substantial can be done about it."<br><span class="highlight">Bot assessment: Appropriate</span></p>
     <p><span class="highlight">Comment - 3:</span>  “Some are just poorly educated, ultimately not their fault for being uninformed and ignorant. I blame the American educational system.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
-    <p><span class="highlight">Comment - 4:</span>  “You either trust in God or think you are smarter than him as you believe in this crooked science where there is no consensus.”br><span class="highlight">Bot assessment: Appropriate</span></p>
+    <p><span class="highlight">Comment - 4:</span>  “You either trust in God or think you are smarter than him as you believe in this crooked science where there is no consensus.”<br><span class="highlight">Bot assessment: Appropriate</span></p>
     <form>
-      <label class="highlight">Task:</label>
+      <label class="highlight">Your task:</label>
       <el-input
         type="textarea"
         :rows="4"

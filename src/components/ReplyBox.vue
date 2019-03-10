@@ -3,10 +3,11 @@
     <div class="reply-box__nickname">{{user.nickname}}</div>
     <div class="reply-box__avatar__input">
       <img :src="imageURL">
-      <el-input type="textarea" v-model="content" cols="40" rows="3"></el-input>
+      <el-input type="textarea" v-model="content" cols="40" rows="3" :placeholder="placeholder"></el-input>
     </div>
+    <p class="error" v-if="main && isEnough === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
     <div class="reply-box___buttons">
-      <el-button type="primary" size="small" :disabled="!content" @click="post">Post</el-button>
+      <el-button type="primary" size="small" :disabled="!isEnough" @click="post">Post</el-button>
     </div>
   </section>
 </template>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       content: this.comment ? `@${this.comment.nickname} ` : '',
+      minLength: 280,
     }
   },
   computed: {
@@ -29,7 +31,16 @@ export default {
     },
     isReply() {
       return !!this.parentComment
-    }
+    },
+    placeholder() {
+      return this.main ? 'Please take one position (agree or disagree) and summarize your attitude towards the marijuana legalization.' : ''
+    },
+    isEnough() {
+      return this.content.length >= this.minLength
+    },
+    remainingLength() {
+      return this.minLength - this.content.length
+    },
   },
   methods: {
     post() {
@@ -103,5 +114,9 @@ export default {
   width: 45px;
   height: 45px;
   border-radius: 22.5px;
+}
+.error {
+  color: #BD1515;
+  font-size: 12px;
 }
 </style>

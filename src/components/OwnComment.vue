@@ -9,11 +9,11 @@
       v-model="comment">
     </el-input>
     <p class="error" v-if="isEnough === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
-    <p class="note">*Please note that your comment will not be shown immediately, because it is awaiting moderation from your peers. </p>
+    <p class="note">*Please note that your comment will not be shown immediately after your submission, because it will await moderation from your peers (Like what you just did!). </p>
     <hr>
 
     <div class="rating">
-      <p class="rating-label">Please rate the overall quality of the comment:</p>
+      <p class="rating-label">Please rate the overall quality of your own comment:</p>
       <div class="rate-container">
         <label>Quality</label>
         <el-rate v-model="rating" class="rate" @change="onRatingChange"></el-rate>
@@ -109,9 +109,13 @@ hr {
 .rate-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-weight: bold;
+}
+.rate-container > label {
+  margin-bottom: 0; 
+  margin-right: 64px;
 }
 .rate {
   transform: scale(1.5);

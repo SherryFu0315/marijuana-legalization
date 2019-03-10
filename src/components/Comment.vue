@@ -17,13 +17,31 @@
                   :offset="-100"
                   v-show="attitude === undefined && reported === undefined">
                   <img slot="reference" class="help" src="../assets/help.png">
-                  <p><strong>The moderation decision is made based on our comment policy.</strong></p>
-                  <ul>
-                    <li>Don't make false statements, defame, or impersonate someone else.</li>
-                    <li>Don't copy and post others' material, trademarks, or intellectual property.</li>
-                    <li>Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.</li>
-                    <li>Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</li>
-                  </ul>
+                  <template v-if="study === 2 && condition === 1">
+                    <p><strong>The selection decision is made based on our comment policy.</strong></p>
+                    <ul>
+                      <li>comments that represent a range of views and are judged the most interesting or thoughtful.</li>
+                      <li>comments from a particular region, or readers with first-hand knowledge of an issue.</li>
+                    </ul>
+                  </template>
+                  <template v-else-if="study === 2 && condition === 2">
+                    <p><strong>The moderation decision is made based on our comment policy.</strong></p>
+                    <ul>
+                      <li>abusive, defamatory, offensive or disparaging (ie. on the basis of disability, ethnicity, gender, or otherwise).</li>
+                      <li>attacks or threatens another person, threatens or promotes violence, wishes for harm to befall another person</li>
+                      <li>stalk or harass another person, discourage participation by others</li>
+                      <li>any type of advertisements</li>
+                    </ul>
+                  </template>
+                  <template v-else>
+                    <p><strong>The moderation decision is made based on our comment policy.</strong></p>
+                    <ul>
+                      <li>Don't make false statements, defame, or impersonate someone else.</li>
+                      <li>Don't copy and post others' material, trademarks, or intellectual property.</li>
+                      <li>Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.</li>
+                      <li>Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</li>
+                    </ul>
+                  </template>
                 </el-popover>
               </template>
             </div>

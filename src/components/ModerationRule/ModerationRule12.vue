@@ -25,7 +25,7 @@
     <p>In this case, we can tell the bot indeed helps catch the inappropriate comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
     <img src="static/study1.jpg"/>
     <p>A bot can be made "strict" or "lenient" in its assessment by tweaking the cutoff point.</p>
-    <p class="highlight">In this case, the platform has implemented a "lenient" bot (fewer comments are classified as inappropriate). If the bot were designed to be stricter, the Comment-4 would have been assessed as inappropriate.</p>
+    <p class="highlight">In this case, the platform has implemented a "lenient" bot (fewer comments are classified as inappropriate). If the bot were designed to be stricter, the Comment-4 would have been assessed as inappropriate.</p>
   </article>
 </template>
 

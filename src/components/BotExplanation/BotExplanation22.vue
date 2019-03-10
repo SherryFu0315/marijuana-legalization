@@ -9,8 +9,8 @@
       <li>Comment classified as inappropriate by the bot when it really is not ("false positives")</li>
       <li>Comment classified as appropriate by the bot when in reality the comment is NOT approporiate ("false negatives")</li>
     </ul>
-    <img src="static/study2-2.jpg"/>
     <p>In this case, we can tell the bot indeed helps catch the inappropriate comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
+    <img src="static/study2-2.jpg"/>
   </article>
 </template>
 

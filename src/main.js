@@ -3,7 +3,8 @@ import firebase from "firebase"
 import 'element-ui/lib/theme-chalk/index.css'
 import './style.css'
 import { 
-  Button, 
+  Button,
+  ButtonGroup,
   Select,
   Row,
   Col,
@@ -21,6 +22,7 @@ import config from './config'
 Vue.config.productionTip = false
 
 Vue.use(Button)
+Vue.use(ButtonGroup)
 Vue.use(Select)
 Vue.use(Row)
 Vue.use(Col)

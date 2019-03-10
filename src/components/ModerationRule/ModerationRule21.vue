@@ -13,7 +13,7 @@
     <p><span class="highlight">Comment - 3:</span>  “It's the best it makes me warm when it should be cold. Thanks, global warming.”<br><span class="highlight">Selected by the bot</span></p>
     <p><span class="highlight">Comment - 4:</span>   “They are blatantly ignoring a fact that 98% of scientists agree are real. It is okay to have your own opinion about how we should deal with climate change, but no action at all is selfish because we are destroying the world for future generations.”<br><span class="highlight">Not Selected by the bot</span></p>
     <form>
-      <label class="highlight">Task:</label>
+      <label class="highlight">Your task:</label>
       <el-input
         type="textarea"
         :rows="4"

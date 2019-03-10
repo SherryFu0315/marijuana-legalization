@@ -29,11 +29,9 @@ export default {
       rules: {
         nickname: [
           { required: true, message: 'Please input screen name', trigger: 'blur' },
-          { min: 3, message: 'Invalid screen name', trigger: 'blur' },
         ],
         password: [
           { required: true, message: 'Please input password', trigger: 'blur' },
-          { min: 3, message: 'Invalid password', trigger: 'blur' },
         ],
       }
     }

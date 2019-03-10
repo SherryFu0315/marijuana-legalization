@@ -8,9 +8,11 @@
     <div class="highlight assessment" v-if="bot !== undefined">
       <span>{{bot}}</span>
       <div class="attitude-container">
-        <span>Do you agree? </span>
-        <el-button type="text" :style="{ color: attitude === true ? '#BD1515' : '#605E5E' }" @click="attitude = true">Yes</el-button>
-        <el-button type="text" :style="{ color: attitude === false ? '#BD1515' : '#605E5E' }" @click="attitude = false">No</el-button>
+        <span>Do you agree with bot? </span>
+        <el-button-group>
+          <el-button type="warning" :plain="attitude !== true" @click="attitude = true">Yes</el-button>
+          <el-button type="warning" :plain="attitude !== false" @click="attitude = false">No</el-button>
+        </el-button-group>
       </div>
     </div>
     <div class="rating">
@@ -44,15 +46,23 @@ export default {
   watch: {
     isFinished(val) {
       if (val) {
-        emitter.emit('step-finished', {
-          type: 'peer-review',
-          input: {
+        const input = {
             index: this.current,
             content: this.content,
-            bot: this.bot,
-            attitude: this.attitude,
             rating: this.rating,
-          },
+        }
+
+        if (this.bot) {
+          input.bot = this.bot
+        }
+
+        if (this.attitude) {
+          input.attitude = this.attitude
+        }
+
+        emitter.emit('step-finished', {
+          type: 'peer-review',
+          input,
         })
       } else {
         emitter.emit('step-unfinished')
@@ -107,10 +117,6 @@ hr {
 .attitude-container > span {
   margin-right: 24px;
 }
-.attitude-container > .el-button--text {
-  color: #BD1515;
-  font-size: 16px;
-}
 .rating {
   display: flex;
   flex-direction: column;
@@ -123,9 +129,13 @@ hr {
 .rate-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-weight: bold;
+}
+.rate-container > label {
+  margin-bottom: 0; 
+  margin-right: 64px;
 }
 .rate {
   transform: scale(1.5);
