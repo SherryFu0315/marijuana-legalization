@@ -7,13 +7,7 @@
           <div class="comment__main__body__nickname">{{comment.nickname}}</div>
           <div v-if="isReportEnabled && !comment.byCurrentUser" class="comment___main__body__report">
             <div class="comment___main__body__report__info">
-              <template v-if="!comment.flagInfo">
-                <template v-if="reported === true">
-                  <img class="flag" src="../assets/flag.png">
-                  {{reportInfoDisplay}}
-                </template>
-              </template>
-              <template v-else>
+              <template v-if="comment.flagInfo">
                 <img class="flag" src="../assets/flag.png" v-show="attitude !== false">
                 {{flagInfoDisplay}}
                 <el-popover
@@ -34,16 +28,16 @@
               </template>
             </div>
             <template v-if="comment.flagInfo">
-              <div class="button danger" v-show="attitude === undefined" @click="confirm">Confirm</div>
-              <div class="button danger" v-show="attitude === undefined" @click="unflag">Unflag</div>
+              <div class="button danger" v-show="attitude === undefined" @click="confirm">Agree</div>
+              <div class="button danger" v-show="attitude === undefined" @click="unflag">Disagree</div>
             </template>
-            <template v-else>
-              <div v-if="reported === undefined" class="button" @click="report">
+            <template v-if="study === 2 && !comment.flagInfo">
+              <div class="button" @click="report">
                 <img src="../assets/flag-outline.png">
                 {{reportInfoDisplay}}
               </div>
             </template>
-            <div class="button danger" v-show="attitude !== undefined || reported !== undefined" @click="change">Change</div>
+            <div class="button danger" v-show="attitude !== undefined || reported !== undefined" @click="change">Undo</div>
           </div>
           <div v-if="comment.byCurrentUser" class="button" @click="showEditBox">Edit</div>
         </div>
@@ -80,6 +74,7 @@ import { MessageBox } from 'element-ui'
 import ReplyBox from './ReplyBox.vue'
 import { getReplies } from '../data'
 import emitter from '../emitter'
+import config from '../config'
 
 export default {
   name: 'comment',
@@ -145,6 +140,8 @@ export default {
       reported, // reported as abuse?
       attitude, // confirm or unflag
       like, // like or dislike
+      study: config.study,
+      condition: config.condition,
     }
   },
   computed: {
@@ -164,10 +161,21 @@ export default {
       return this.comment.type === 0 ?  '' : this.comment.type === 1 ? 'bot' : 'community'
     },
     flagInfoDisplay() {
-      return this.attitude === undefined ? this.comment.flagInfo : this.attitude === false ? `Reported to the ${this.whom}: You unflagged this message` : `Agree with the ${this.whom}: the post is abusive`
+      if (this.attitude === undefined) {
+        return this.comment.flagInfo
+      }
+
+      if (this.attitude === false) {
+        return this.condition === 1 ? 'Disagree with the bot: this post is not insightful' : 'Disagree with the bot: this post is not inappropriate'
+      }
+
+      return this.condition === 1 ? 'Agree with the bot: this is insightful' : 'Agree with the bot: this is inappropriate'
     },
     reportInfoDisplay() {
-      return this.reported ? 'Reported: this is abusive' : 'Report abuse'
+      if (!this.reported) {
+        return this.condition === 1 ? 'Recommend to bot' : 'Report to bot'
+      }
+      return this.condition === 1 ? 'Recommended: this is insightful' : 'Reported: this is inappropriate'
     },
     likeCount() {
       return parseInt(this.comment.like, 10) + (this.like === true ? 1 : 0)

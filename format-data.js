@@ -3,13 +3,14 @@
 const fs = require('fs');
 const request = require('request');
 
-request('https://bot-signal-2.firebaseio.com/.json', function (error, response, body) {
+request('https://march-version.firebaseio.com/.json', function (error, response, body) {
   if (!error && response.statusCode == 200) {
     const importedJSON = JSON.parse(body);
     const formattedData = format(importedJSON)
 
     fs.writeFileSync('formatted.json', JSON.stringify(formattedData, null, 2));
 
+    /* eslint-disable-next-line */
     console.info('Formatted!')
   }
 })
@@ -18,6 +19,8 @@ function format(data) {
   return Object.entries(data).map(([key, value]) => {
     const UGC = []
     const Interactions = []
+    const Moderations = []
+    let Explanation = undefined
 
     Object.entries((value.replies || {})).forEach(([replyId, repliesItem]) => {
       Object.values(repliesItem.content).forEach((replyContent, i) => {
@@ -158,13 +161,50 @@ function format(data) {
           Interactions.push(newEntry)
         }
       }
+    });
+
+    (value.actions || []).forEach(({ type, input, date }) => {
+      if (type === 'comment') {
+        UGC.push({
+          Type: 'original',
+          CreatedAt: date,
+          Content: input,
+        })
+      }
+
+      if (type === 'resubmit-comment') {
+        UGC.push({
+          Type: 'resubmit',
+          CreatedAt: date,
+          Content: input.comment,
+          Quality: input.rating,
+        })
+      }
+
+      if (type === 'peer-review') {
+        Moderations.push({
+          CreatedAt: date,
+          Bot: input.attitude ? 'Agree' : 'Disagree',
+          Quality: input.rating,
+        })
+      }
+
+      if (type === 'rule') {
+        Explanation = {
+          CreatedAt: date,
+          Content: input,
+        }
+      }
     })
 
     return {
       UID: Buffer.from(key, 'base64').toString(),
-      Condition: value.condition,
+      Study: value.case.study,
+      Condition: value.case.condition,
       UGC,
       Interactions,
+      ...(Moderations.length > 0 ? { Moderations } : {}),
+      ...(Explanation ? { Explanation } : {}),
     }
   })
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import firebase from "firebase"
-import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
+import './style.css'
 import { 
   Button, 
   Select,
@@ -11,9 +12,11 @@ import {
   Dialog,
   Form,
   FormItem,
+  Rate,
 } from 'element-ui';
 import App from './App.vue'
 import loadData from './data'
+import config from './config'
 
 Vue.config.productionTip = false
 
@@ -26,25 +29,22 @@ Vue.use(Input)
 Vue.use(Dialog)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Rate)
 
-const config = {
-  apiKey: "AIzaSyD4ib-H0aPM6TyQE4D8-AZij7OvSv6crl0",
-  authDomain: "bot-signal-2.firebaseapp.com",
-  databaseURL: "https://bot-signal-2.firebaseio.com",
-  projectId: "bot-signal-2",
-  storageBucket: "bot-signal-2.appspot.com",
-  messagingSenderId: "120691170931",
-}
-firebase.initializeApp(config)
+firebase.initializeApp({
+  apiKey: "AIzaSyCSGV8SL8f15gYwwBuK2t6k2yJ0ke80qUQ",
+  authDomain: "march-version.firebaseapp.com",
+  databaseURL: "https://march-version.firebaseio.com",
+  projectId: "march-version",
+  storageBucket: "march-version.appspot.com",
+  messagingSenderId: "58729237152"
+})
 
-loadData().then(({ which, condition }) => {
+loadData().then(({ study, condition, name }) => {
+  config.initialize({ study, condition, name })
+
   new Vue({
-    render: h => h(App, {
-      props: {
-        which,
-        condition,
-      },
-    }),
+    render: h => h(App),
   }).$mount('#app')
 })
 

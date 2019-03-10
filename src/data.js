@@ -2,40 +2,39 @@ import Papa from 'papaparse'
 
 const list = [
   {
-    hasFlag: false,
-    type: 0,
+    study: 1,
+    condition: 1,
+    name: 'No bot condition',
   },
   {
-    type: 1,
-    key: 'V/Acc/HU',
+    study: 1,
+    condition: 5,
+    name: 'Mindful + strict',
   },
   {
-    type: 1,
-    key: 'V/Acc/LU',
+    study: 1,
+    condition: 4,
+    name: 'Mindful + lenient',
   },
   {
-    type: 1,
-    key: 'V/Inacc/HU',
+    study: 1,
+    condition: 3,
+    name: 'Routine + strict',
   },
   {
-    type: 1,
-    key: 'V/Inacc/LU',
+    study: 1,
+    condition: 2,
+    name: 'Routine + lenient',
   },
   {
-    type: 2,
-    key: 'IV/Acc/HU',
+    study: 2,
+    condition: 2,
+    name: 'Moderation  bot',
   },
   {
-    type: 2,
-    key: 'IV/Acc/LU',
-  },
-  {
-    type: 2,
-    key: 'IV/Inacc/HU',
-  },
-  {
-    type: 2,
-    key: 'IV/Inacc/LU',
+    study: 2,
+    condition: 1,
+    name: 'Selection bot'
   },
 ]
 
@@ -53,32 +52,32 @@ const getQueryVariable = (variable) => {
 
 const comments = []
 const replies = {}
+const peerReviews = []
 
 export default () => new Promise((resolve) => {
   const id = getQueryVariable('id')
   const which = parseInt(atob(id), 10)
+  console.log(which)
   const c = list[which]
 
   let isCommentsLoaded = false
   let isRepliesLoaded = false
+  let isPeerReviewLoaded = c.study === 2
   const finished = () => {
-    if (isCommentsLoaded && isRepliesLoaded) {
-      return resolve({
-        which,
-        condition: id,
-      })
+    if (isCommentsLoaded && isRepliesLoaded && isPeerReviewLoaded) {
+      return resolve(c)
     }
     return
   }
 
-  fetch('static/comments.csv')
+  fetch(`static/${c.study}/comments.csv`)
     .then((response) => {
       return response.text()
     })
     .then((text) => {
       Papa.parse(text, { header: true }).data
         .forEach((item) => {
-          const { comment_text, down_count, up_count, message_id, nickname, user_id } = item
+          const { comment_text, down_count, up_count, message_id, nickname, user_id, Selection_bot, Moderation_bot } = item
           comments.push({
             content: comment_text,
             like: up_count,
@@ -87,15 +86,14 @@ export default () => new Promise((resolve) => {
             nickname,
             uid: user_id,
 
-            type: c.type,
-            flagInfo: c.type !== 0 ? (item[c.key] || undefined) : undefined,
+            flagInfo: c.study === 2 ? c.condition === 1 ? Selection_bot : Moderation_bot : undefined,
           })
         })
       isCommentsLoaded = true
       finished()
     })
   
-  fetch('static/replies.csv')
+  fetch(`static/${c.study}/replies.csv`)
     .then((response) => {
       return response.text()
     })
@@ -121,7 +119,27 @@ export default () => new Promise((resolve) => {
       isRepliesLoaded = true
       finished()
     })
+
+    if (c.study === 1) {
+      fetch(`static/1/peer-review.csv`)
+        .then((response) => {
+          return response.text()
+        })
+        .then((text) => {
+          Papa.parse(text, { header: true }).data
+            .forEach((item) => {
+              const { comment_text, Mindful_strict, Routine_strict } = item
+              peerReviews.push({
+                content: comment_text,
+                bot: c.condition === 2 ? item['Routine_lenient '] : c.condition === 3 ? Routine_strict : c.condition === 4 ? item['Mindful_lenient '] : c.condition === 5 ? Mindful_strict : undefined,
+              })
+            })
+          isPeerReviewLoaded = true
+          finished()
+        })
+    }
 })
 
 export const getComments = () => comments
 export const getReplies = (commentId) => replies[commentId] || []
+export const getPeerReviews = () => peerReviews

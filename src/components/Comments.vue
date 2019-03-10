@@ -1,7 +1,9 @@
 <template>
   <section class="comments">
-    <ReplyBox :user="user" :main="true"/>
-    <Comment v-for="comment in comments" :key="comment.id" :comment="comment" :user="user" :saved-data="savedData"/>
+    <ReplyBox :user="user" :main="true" v-if="shouldShowReplyBox"/>
+    <template v-if="shouldShowComments">
+      <Comment v-for="comment in comments" :key="comment.id" :comment="comment" :user="user" :saved-data="savedData"/>
+    </template>
   </section>
 </template>
 
@@ -10,7 +12,8 @@
   display: flex;
   flex-direction: column;
   margin-top: 16px;
-  max-width: 39rem;
+  /* max-width: 39rem; */
+  width: 100%;
 }
 </style>
 
@@ -53,15 +56,25 @@ export default {
       })
     }
 
+    const done = (this.savedData.actions && Object.keys(this.savedData.actions).find((key) => this.savedData.actions[key].type === 'done'))
+
     return {
       comments,
+      shouldShowComments: done,
+      shouldShowReplyBox: !done,
     }
   },
   mounted() {
+    emitter.on('done', () => {
+      this.shouldShowReplyBox = false
+    })
+    emitter.on('show-comments', () => {
+      this.shouldShowComments = true
+    })
     emitter.on('post', ({ commentId, replyId, comment }) => {
       if (commentId === undefined && replyId === undefined) {
         const ref = `${this.user.id}/replies/`
-        const newKey = firebase.database().ref(ref).push().key
+        const newKey = (new Date()).getTime()
         firebase.database().ref(ref + newKey).set({
           content: {
             [firebase.database().ref().child(ref).push().key]: comment.content,

@@ -1,0 +1,26 @@
+textarea::-webkit-input-placeholder {
+  color: black !important;
+}
+
+textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color: black !important;
+}
+
+textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color: black !important;
+}
+
+textarea:-ms-input-placeholder {
+  color: black !important;
+}
+.el-popover {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+  font-size: 12px;
+}

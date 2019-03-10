@@ -13,6 +13,7 @@
 
 <script>
 import emitter from '../emitter'
+import config from '../config'
 
 export default {
   name: 'reply-box',
@@ -32,6 +33,12 @@ export default {
   },
   methods: {
     post() {
+      if (this.main) {
+        config.comment = this.content
+        emitter.emit('click-on-post')
+        return
+      }
+      
       emitter.emit('post', { 
         commentId: this.isReply ? this.parentComment.id : (this.comment ? this.comment.id : undefined),
         replyId: this.isReply ? this.comment.id : undefined,
