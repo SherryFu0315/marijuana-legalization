@@ -34,12 +34,13 @@
                     </ul>
                   </template>
                   <template v-else>
-                    <p><strong>The moderation decision is made based on our comment policy.</strong></p>
+                    <p><strong>Commentators in this forum are instructed to observe the following rules:</strong></p>
                     <ul>
-                      <li>Don't make false statements, defame, or impersonate someone else.</li>
-                      <li>Don't copy and post others' material, trademarks, or intellectual property.</li>
-                      <li>Comments shouldn't harass, abuse, or threaten anyone's personal safety or property.</li>
-                      <li>Don't post profanity, obscenities, abusive language, or otherwise objectionable content.</li>
+                      <li>Abusive, defamatory, offensive or disparaging comments on the basis of disability, ethnicity, gender, or otherwise are forbidden.</li>
+                      <li>Comments that are attacks or threaten another person, promote violence, wish for harm to befall another person are forbidden.</li>
+                      <li>Stalking or harassing another person and any form of discouraging participation by others are forbidden.</li>
+                      <li>Misrepresentation of comments, user profiles, posting advertisements, and all forms of spamming are forbidden. </li>
+                      <li>The forum administrators reserve the right to remove any comment for any reason. They may also bar individuals who break the above commenting rules.</li>
                     </ul>
                   </template>
                 </el-popover>
