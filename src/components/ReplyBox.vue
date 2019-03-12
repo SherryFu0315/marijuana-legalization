@@ -33,7 +33,7 @@ export default {
       return !!this.parentComment
     },
     placeholder() {
-      return this.main ? 'Please take one position (agree or disagree) and summarize your attitude towards the marijuana legalization.' : ''
+      return this.main ? (this.study === 1 && this.condition === 1) ? 'Please summarize your thoughts on marijuana legalization and enter your comments here:' : 'Please take one position (agree or disagree) and summarize your attitude towards the marijuana legalization.' : ''
     },
     isEnough() {
       return this.content.length >= this.minLength

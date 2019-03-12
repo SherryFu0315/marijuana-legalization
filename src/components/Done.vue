@@ -1,12 +1,13 @@
 <template>
   <article>
     <p>Thank you. You are going to enter the discussion forum.</p>
-    <p>Please interact with other users by:</p>
+    <p>Please note that your comment will not be shown in the forum yet as it is awaiting moderation by other users. </p>
+    <p>Meanwhile, please interact with other users of the forum by:</p>
     <ul>
-      <li>reply to other users</li>
-      <li>thumbs up or thumbs down for posts</li>
+      <li>replying to other users</li>
+      <li>voting thumbs up or thumbs down for posts by other users</li>
       <template v-if="study === 1">
-        <li>report any inappropriate comments that might be missed by your peer moderators</li>
+        <li>report any inappropriate comments in the forum that may have been missed by other moderators</li>
       </template>
       <template v-if="study === 2">
         <li>interact with the bot {{condition === 1 ? 'selection' : 'moderation'}} results</li>

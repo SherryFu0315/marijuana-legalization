@@ -80,10 +80,10 @@ export default {
         })
       })
 
-      // window.FS.identify(id, {
-      //   displayName: nickname,
-      //   password,
-      // });
+      window.FS.identify(id, {
+        displayName: nickname,
+        password,
+      });
     },
   },
 }

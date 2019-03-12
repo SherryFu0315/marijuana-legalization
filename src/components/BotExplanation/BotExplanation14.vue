@@ -1,8 +1,7 @@
 <template>
   <article>
-    <h1>Moderation Rules</h1>
-    <h3>Here is how the bot works:</h3>
-    <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of inappropriateity score for each comment. </p>
+    <h1>How the moderation bot works</h1>
+    <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of probability of inappropriateness score for each comment. </p>
     <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as inappropriate or not inappropriate. For example, all comments with a probability score of higher than 0.5 can be classified as inappropriate.</p>
     <p><span class="highlight">The cutoff that is used by the bot can lead to classification errors,</span> such as:</p>
     <ul>
@@ -10,9 +9,11 @@
       <li>Comment classified as appropriate by the bot when in reality the comment is NOT appropriate ("false negatives")</li>
     </ul>
     <p>In this case, we can tell the bot indeed helps catch the inappropriate comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
-    <img src="static/study1.jpg"/>
+    <p class="center">
+      <img src="static/study1.jpg"/>
+    </p>
     <p>A bot can be made "strict" or "lenient" in its assessment by tweaking the cutoff point.</p>
-    <p class="highlight">In this case, the platform has implemented a "lenient" bot (fewer comments are classified as inappropriate). If the bot were designed to be stricter, the Comment-4 would have been assessed as inappropriate.</p>
+    <p class="highlight">Examining the assessments of the bot with regards to the four example comments, we can see from the table below that the bot accurately assessed two comments (comment-1 and comment-2) and made mistakes with two comments (comment-3 and comment-4).</p>
   </article>
 </template>
 
@@ -55,7 +56,12 @@ label {
   display: block;
   margin-bottom: 8px;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 img {
-  width: 100%;
+  width: 80%;
 }
 </style>

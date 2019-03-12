@@ -49,7 +49,7 @@
               <div class="button danger" v-show="attitude === undefined" @click="confirm">Agree</div>
               <div class="button danger" v-show="attitude === undefined" @click="unflag">Disagree</div>
             </template>
-            <template v-if="study === 2 && !comment.flagInfo">
+            <template v-if="!comment.flagInfo">
               <div class="button" @click="report">
                 <img src="../assets/flag-outline.png">
                 {{reportInfoDisplay}}
@@ -191,9 +191,9 @@ export default {
     },
     reportInfoDisplay() {
       if (!this.reported) {
-        return this.condition === 1 ? 'Recommend to bot' : 'Report to bot'
+        return this.study === 1 ? 'Report' : this.condition === 1 ? 'Recommend to bot' : 'Report to bot'
       }
-      return this.condition === 1 ? 'Recommended: this is insightful' : 'Reported: this is inappropriate'
+      return this.study === 1 ? 'Reported' : this.condition === 1 ? 'Recommended: this is insightful' : 'Reported: this is inappropriate'
     },
     likeCount() {
       return parseInt(this.comment.like, 10) + (this.like === true ? 1 : 0)

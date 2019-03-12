@@ -15,6 +15,16 @@
         </el-button-group>
       </div>
     </div>
+
+    <div class="highlight assessment" v-if="study === 1 && condition === 1">
+      <div class="attitude-container">
+        <span>Do you agree that this comment can be published? </span>
+        <el-button-group>
+          <el-button type="warning" :plain="attitude !== true" @click="attitude = true">Yes</el-button>
+          <el-button type="warning" :plain="attitude !== false" @click="attitude = false">No</el-button>
+        </el-button-group>
+      </div>
+    </div>
     <div class="rating">
       <p class="rating-label">Please rate the overall quality of the comment:</p>
       <div class="rate-container">
@@ -27,6 +37,7 @@
 
 <script>
 import emitter from '../emitter';
+import config from '../config';
 
 export default {
   name: 'peer-review',
@@ -36,6 +47,8 @@ export default {
       attitude: undefined,
       rating: null,
       ratingTouched: false,
+      study: config.study,
+      condition: config.condition,
     };
   },
   computed: {

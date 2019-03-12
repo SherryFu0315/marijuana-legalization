@@ -1,14 +1,16 @@
 <template>
   <article>
-    <h1>Moderation Rules</h1>
-    <p>An artificial-intelligence-based software (ie. <span class="highlight">a bot</span>) is used to help us moderate comments based on the following rules. </p>
+    <h1>Commenting Rules</h1>
+    <p>Commentators in this forum are instructed to observe the following rules:</p>
     <ul>
-      <li>abusive, defamatory, offensive or disparaging (ie. on the basis of disability, ethnicity, gender, or otherwise).</li>
-      <li>attacks or threatens another person, threatens or promotes violence, wishes for harm to befall another person</li>
-      <li>stalk or harass another person, discourage participation by others</li>
-      <li>any type of advertisements</li>
+      <li>Abusive, defamatory, offensive or disparaging comments on the basis of disability, ethnicity, gender, or otherwise are forbidden.</li>
+      <li>Comments that are attacks or threaten another person, promote violence, wish for harm to befall another person are forbidden.</li>
+      <li>Stalking or harassing another person and any form of discouraging participation by others are forbidden.</li>
+      <li>Misrepresentation of comments, user profiles, posting advertisements, and all forms of spamming are forbidden. </li>
+      <li>The forum administrators reserve the right to remove any comment for any reason. They may also bar individuals who break the above commenting rules.</li>
     </ul>
-    <p><span class="highlight">Based on machine learning and natural language processing techniques, the bot classifies comments as either appropriate or not.</span> For example:</p>
+    <p>An artificial-intelligence-based software (ie. <span class="highlight">a bot</span>) is used to help us moderate comments based on the above rules. </p>
+    <p class="highlight">Based on machine learning and natural language processing techniques, the bot classifies comments as either appropriate or not. For example, please see the bot assessments of the following comments posted for an article about climate change:</p>
     <p>In an article about the "climate change":</p>
     <p><span class="highlight">Comment - 1:</span> "Climate change is happening and it's not changing in our favor. If you think differently you're an idiot.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
     <p><span class="highlight">Comment - 2:</span> "Clearly man made, but unsure of its extent and whether anything substantial can be done about it."<br><span class="highlight">Bot assessment: Appropriate</span></p>
@@ -23,7 +25,9 @@
       <li>Comment classified as not toxic by the bot when in reality the comment is toxic ("false negatives")</li>
     </ul>
     <p>In this case, we can tell the bot indeed helps catch the inappropriate comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
-    <img src="static/study1.jpg"/>
+    <p class="center">
+      <img src="static/study1.jpg"/>
+    </p>
     <p>A bot can be made "strict" or "lenient" in its assessment by tweaking the cutoff point.</p>
     <p class="highlight">In this case, the platform has implemented a “strict” bot (more comments are classified as inappropriate). If the bot were designed to be more lenient, the Comment-3 would NOT be assessed as inappropriate. </p>
   </article>
@@ -68,7 +72,12 @@ label {
   display: block;
   margin-bottom: 8px;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 img {
-  width: 100%;
+  width: 80%;
 }
 </style>

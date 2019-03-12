@@ -5,7 +5,8 @@
     <el-input
       type="textarea"
       :rows="4"
-      placeholder="Please resubmit your opinion towards the article"
+      :placeholder="'Please resubmit your opinion towards the article. Here is your original comment: \n'+originalComment"
+      @paste="handlePaste"
       v-model="comment">
     </el-input>
     <p class="error" v-if="isEnough === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
@@ -35,6 +36,7 @@ export default {
       ratingTouched: false,
       username: config.user.nickname,
       minLength: 280,
+      originalComment: config.comment,
     };
   },
   computed: {
@@ -66,6 +68,9 @@ export default {
   methods: {
     onRatingChange() {
       this.ratingTouched = true
+    },
+    handlePaste() {
+      return false
     },
   },
 }

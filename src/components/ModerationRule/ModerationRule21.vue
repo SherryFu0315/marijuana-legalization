@@ -1,13 +1,13 @@
 <template>
   <article>
-    <h1>Moderation Rules</h1>
-    <p>An artificial-intelligence-based software (ie. <span class="highlight">a bot</span>) is used to help us highlight insightful comments. </p>
+    <h1>Commenting Rules</h1>
+    <p>Commentators in this forum are instructed to observe the following rules:</p>
     <ul>
       <li>Those comments are a selection of comments that represent a range of views and are judged the most interesting or thoughtful.</li>
       <li>In some cases, these comments may be selected to highlight comments from a particular region, or readers with first-hand knowledge of an issue.</li>
     </ul>
-    <p><span class="highlight">Based on machine learning and natural language processing techniques, the bot classifies comments as either insightful or not.</span> For example:</p>
-    <p>In an article about the "climate change":</p>
+    <p>An artificial-intelligence-based software (ie. <span class="highlight">a bot</span>) is used to help us moderate comments based on the above rules. </p>
+    <p class="highlight">Based on machine learning and natural language processing techniques, the bot classifies comments as either insightful or not. For example, please see the bot assessments of the following comments posted for an article about climate change:</p>
     <p><span class="highlight">Comment - 1:</span> "I recognize there is changes in our climate and feel that we need to do what we can to prevent any further decline. I try to do all that is in my power to change my effect on the climate change. I support what I can to encourage companies to change their effects on our environment.”<br><span class="highlight">Selected by the bot</span></p>
     <p><span class="highlight">Comment - 2:</span> "Climate changes naturally. It's a natural phenomenon."<br><span class="highlight">Not Selected by the bot</span></p>
     <p><span class="highlight">Comment - 3:</span>  “It's the best it makes me warm when it should be cold. Thanks, global warming.”<br><span class="highlight">Selected by the bot</span></p>
