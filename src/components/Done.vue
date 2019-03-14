@@ -1,6 +1,6 @@
 <template>
   <article>
-    <p>Thank you. You are going to enter the discussion forum.</p>
+    <p>Thank you! You are now going to enter the discussion forum.</p>
     <p>Please note that your comment will not be shown in the forum yet as it is awaiting moderation by other users. </p>
     <p>Meanwhile, please interact with other users of the forum by:</p>
     <ul>

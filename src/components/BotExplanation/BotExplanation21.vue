@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h1>How the moderation bot works</h1>
+    <h1>How the selection bot works:</h1>
     <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of insightful score for each comment. </p>
     <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as insightful or not. For example, all comments with a probability score of higher than 0.5 can be classified as insightful.</p>
     <p><span class="highlight">The cutoff that is used by the bot can lead to classification errors,</span> such as:</p>

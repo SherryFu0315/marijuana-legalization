@@ -54,6 +54,14 @@ const comments = []
 const replies = {}
 const peerReviews = []
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default () => new Promise((resolve) => {
   const id = getQueryVariable('id')
   const which = parseInt(atob(id), 10)
@@ -65,6 +73,7 @@ export default () => new Promise((resolve) => {
   let isPeerReviewLoaded = c.study === 2
   const finished = () => {
     if (isCommentsLoaded && isRepliesLoaded && isPeerReviewLoaded) {
+      shuffle(comments)
       return resolve(c)
     }
     return

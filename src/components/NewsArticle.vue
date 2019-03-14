@@ -1,6 +1,6 @@
 <template>
   <article>
-    <h1>Weeds is legalized in Michigan yet rejected by North Dakota now</h1>
+    <h1>Weed is legalized in Michigan yet rejected by North Dakota</h1>
     <section class="content">
       <p>On November 12, 2018, Michigan voters made the state the 10th in the U.S. — and the first in the Midwest — to legalize recreational marijuana. Voters in a second Midwest state, North Dakota, struck down a similar measure that would have legalized recreational use and expunged criminal records for prior marijuana offenders.</p>
       <p>Recreational marijuana is already legal in Washington, DC, and nine other states: Washington, Oregon, Nevada, California, Colorado, Alaska, Vermont, Maine and Massachusetts.</p>

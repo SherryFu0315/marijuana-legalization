@@ -1,20 +1,23 @@
 <template>
   <article>
     <h1>Please resubmit your comment</h1>
+    <p>This is a draft of your comment that you summarized before:</p>
+    <blockquote>{{originalComment}}</blockquote>
+    <p>Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: </p>
     <label class="username">{{username}}</label>
     <el-input
       type="textarea"
       :rows="4"
-      :placeholder="'Please resubmit your opinion towards the article. Here is your original comment: \n'+originalComment"
+      placeholder="Please finalize your comment on marijuana legalization: "
       @paste="handlePaste"
       v-model="comment">
     </el-input>
     <p class="error" v-if="isEnough === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
-    <p class="note">*Please note that your comment will not be shown immediately after your submission, because it will await moderation from your peers (Like what you just did!). </p>
+    <p>*Please note that your comment will not be shown immediately after your submission, because it will await moderation from your peers (Like what you just did!). </p>
     <hr>
 
     <div class="rating">
-      <p class="rating-label">Please rate the overall quality of your own comment:</p>
+      <p class="rating-label">Please rate the overall quality of your comment that you are submitting for publication:</p>
       <div class="rate-container">
         <label>Quality</label>
         <el-rate v-model="rating" class="rate" @change="onRatingChange"></el-rate>

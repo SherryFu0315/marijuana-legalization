@@ -7,6 +7,7 @@
     :close-on-click-modal="false"
     :close-on-press-escape="false"
   >
+    <Introduction v-if="step === 'introduction'"/>
     <template v-if="study === 1">
       <template v-if="step === 'rule'">
         <ModerationRule11 v-if="condition === 1"/>
@@ -41,7 +42,7 @@
     <OwnComment v-if="step === 'resubmit-comment'"/>
     <Done v-if="step === 'done'" />
     <span slot="footer" class="dialog-footer">
-      <el-button type="info" @click="next" :disabled="!canProceed">{{step === 'done' ? 'Done' : 'Next'}}<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+      <el-button type="info" @click="next" :disabled="!canProceed">{{step === 'done' ? 'Enter the forum' : 'Next'}}<i class="el-icon-arrow-right el-icon--right"></i></el-button>
     </span>
   </el-dialog>
 </template>
@@ -49,6 +50,7 @@
 <script>
 import firebase from 'firebase'
 
+import Introduction from './Introduction'
 import ModerationRule11 from './ModerationRule/ModerationRule11'
 import ModerationRule12 from './ModerationRule/ModerationRule12'
 import ModerationRule13 from './ModerationRule/ModerationRule13'
@@ -71,6 +73,7 @@ import emitter from '../emitter';
 export default {
   name: 'study-dialog',
   components: {
+    Introduction,
     ModerationRule11,
     ModerationRule12,
     ModerationRule13,
@@ -91,7 +94,7 @@ export default {
     return {
       study: config.study,
       condition: config.condition,
-      step: 'rule',
+      step: config.study === 1 ? 'introduction' : 'rule',
       peerReviews: getPeerReviews(),
       peerReviewCurrent: 0,
       isProcessing: false,
@@ -149,6 +152,12 @@ export default {
 
     updateStep() {
       const { step, study, condition, peerReviewCurrent, peerReviewCount } = this
+
+      if (step === 'introduction') {
+        this.step = 'rule'
+        return
+      }
+
       if (step === 'rule') {
         if (study === 1 && condition > 3 || study === 2) {
           this.step = 'explanation'

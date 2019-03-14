@@ -10,13 +10,12 @@
       <li>The forum administrators reserve the right to remove any comment for any reason. They may also bar individuals who break the above commenting rules.</li>
     </ul>
     <p>An artificial-intelligence-based software (ie. <span class="highlight">a bot</span>) is used to help us moderate comments based on the above rules. </p>
-    <p class="highlight">Based on machine learning and natural language processing techniques, the bot classifies comments as either appropriate or not. For example, please see the bot assessments of the following comments posted for an article about climate change:</p>
-    <p>In an article about the "climate change":</p>
+    <p class="highlight">For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:</p>
     <p><span class="highlight">Comment - 1:</span> "Climate change is happening and it's not changing in our favor. If you think differently you're an idiot.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
     <p><span class="highlight">Comment - 2:</span> "Clearly man made, but unsure of its extent and whether anything substantial can be done about it."<br><span class="highlight">Bot assessment: Appropriate</span></p>
     <p><span class="highlight">Comment - 3:</span> “Some are just poorly educated, ultimately not their fault for being uninformed and ignorant. I blame the American educational system.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
     <p><span class="highlight">Comment - 4:</span> “You either trust in God or think you are smarter than him as you believe in this crooked science where there is no consensus.”<br><span class="highlight">Bot assessment: Appropriate</span></p>
-    <h3>Here is how the bot works:</h3>
+    <h3>How the moderation bot works:</h3>
     <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of inappropriate score for each comment. </p>
     <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as inappropriate or not. For example, all comments with a probability score of higher than 0.5 can be classified as inappropriate.</p>
     <p><span class="highlight">The cutoff that is used by the bot can lead to classification errors,</span> such as:</p>
@@ -24,12 +23,11 @@
       <li>Comment classified as inappropriate by the bot when it is really not ("false positives")</li>
       <li>Comment classified as appropriate by the bot when in reality the comment is inappropriate ("false negatives")</li>
     </ul>
-    <p>In this case, we can tell the bot indeed helps catch the inappropriate comment (Comment-1), however, it also makes mistakes (Comment - 3 and Comment - 4). See the below table for more information.</p>
+    <p>A bot can be made “strict” or “lenient” in its assessment by tweaking the cutoff point. Referring to the table below, if the bot were designed to be more <u>strict</u>, <u>comment-4</u> would have been classified as <u>inappropriate</u>. </p>
     <p class="center">
       <img src="static/study1.jpg"/>
     </p>
-    <p>A bot can be made "strict" or "lenient" in its assessment by tweaking the cutoff point.</p>
-    <p class="highlight">In this case, the platform has implemented a "lenient" bot (fewer comments are classified as inappropriate). If the bot were designed to be stricter, the Comment-4 would have been assessed as inappropriate.</p>
+    <p>Note: In the comments and the discussion forum you’ll see in the next steps, <span class="highlight">the bot is designed to be <u>lenient</u></span>.</p>
   </article>
 </template>
 
