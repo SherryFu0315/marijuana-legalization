@@ -1,7 +1,7 @@
 <template>
   <article>
     <p>Thank you! You are now going to enter the discussion forum.</p>
-    <p>Please note that your comment will not be shown in the forum yet as it is awaiting moderation by other users. </p>
+    <p v-if="study === 1">Please note that your comment will not be shown in the forum yet as it is awaiting moderation by other users. </p>
     <p>Meanwhile, please interact with other users of the forum by:</p>
     <ul>
       <li>replying to other users</li>
@@ -10,7 +10,7 @@
         <li>report any inappropriate comments in the forum that may have been missed by other moderators</li>
       </template>
       <template v-if="study === 2">
-        <li>interact with the bot {{condition === 1 ? 'selection' : 'moderation'}} results</li>
+        <li>interact with the bot {{condition === 1 ? 'recommendation' : 'moderation'}} results</li>
         <li>report any potential {{condition === 1 ? 'insightful' : 'inappropriate'}} comments that are missed by the bot</li>
       </template>
     </ul>

@@ -4,6 +4,7 @@ export default {
   name: undefined,
   user: undefined,
   comment: '',
+  finalComment: '',
   initialize({ study, condition, name }) {
     this.study = study
     this.condition = condition

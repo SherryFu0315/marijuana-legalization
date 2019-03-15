@@ -2,13 +2,13 @@
   <article>
     <h1>How the moderation bot works:</h1>
     <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of inappropriateness score for each comment. </p>
-    <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as inappropriate or not inappropriate. For example, all comments with a probability score of higher than 0.5 can be classified as inappropriate.</p>
+    <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as appropriate or not. For example, all comments with a probability score of higher than 0.5 can be classified as inappropriate.</p>
     <p><span class="highlight">The cutoff that is used by the bot can lead to classification errors,</span> such as:</p>
     <ul>
       <li>Comment classified as inappropriate by the bot when it is really not ("false positives")</li>
       <li>Comment classified as appropriate by the bot when in reality the comment is NOT appropriate ("false negatives")</li>
     </ul>
-    <p>Examining the assessments of the bot with regards to the four example comments, we can see from the table below that the bot accurately assessed two comments (comment-1 and comment-2) and made mistakes with two comments (comment-3 and comment-4).</p>
+    <p class="highlight">Examining the assessments of the bot with regards to the four example comments, we can see from the table below that the bot accurately assessed two comments (comment-1 and comment-2) and made mistakes with two comments (comment-3 and comment-4).</p>
     <p>A bot can be made “strict” or “lenient” in its assessment by tweaking the cutoff point. Referring to the table below, if the bot were designed to be more <u>lenient</u>, <u>comment-3</u> would have been classified as <u>appropriate</u>. </p>
     <p class="center">
       <img src="static/study1.jpg"/>

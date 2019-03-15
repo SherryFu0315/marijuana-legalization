@@ -195,6 +195,7 @@ export default {
 
       if (step === 'done') {
         firebase.database().ref(`${config.user.id}/actions`).set(this.stepsData)
+      
         emitter.emit('done')
         return
       }

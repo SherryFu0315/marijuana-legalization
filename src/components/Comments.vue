@@ -23,6 +23,17 @@ import Comment from './Comment.vue'
 import ReplyBox from './ReplyBox.vue'
 import { getComments } from '../data'
 import emitter from '../emitter'
+import config from '../config'
+
+const fakeComment = (c) => ({
+  content: c,
+  dislike: '0',
+  flagInfo: '',
+  id: 'fake',
+  like: '0',
+  nickname: config.user.nickname,
+  uid: 'fake',
+})
 
 export default {
   name: 'comments',
@@ -58,6 +69,12 @@ export default {
 
     const done = (this.savedData.actions && Object.keys(this.savedData.actions).find((key) => this.savedData.actions[key].type === 'done'))
 
+    if (done && config.study === 2) {
+      const resubmitActionKey = Object.keys(this.savedData.actions).find((key) => this.savedData.actions[key].type === 'resubmit-comment')
+      const i = Math.floor(Math.random() * Math.floor(comments.length))
+      comments.splice(i, 0, fakeComment(this.savedData.actions[resubmitActionKey].input.comment))
+    }
+
     return {
       comments,
       shouldShowComments: done,
@@ -66,6 +83,10 @@ export default {
   },
   mounted() {
     emitter.on('done', () => {
+      if (config.study === 2) {
+        const i = Math.floor(Math.random() * Math.floor(this.comments.length))
+        this.comments.splice(i, 0, fakeComment(config.finalComment))
+      }
       this.shouldShowReplyBox = false
     })
     emitter.on('show-comments', () => {

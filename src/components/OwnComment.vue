@@ -13,7 +13,7 @@
       v-model="comment">
     </el-input>
     <p class="error" v-if="isEnough === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
-    <p>*Please note that your comment will not be shown immediately after your submission, because it will await moderation from your peers (Like what you just did!). </p>
+    <p v-if="study === 1">*Please note that your comment will not be shown immediately after your submission, because it will await moderation from your peers (Like what you just did!). </p>
     <hr>
 
     <div class="rating">
@@ -40,6 +40,8 @@ export default {
       username: config.user.nickname,
       minLength: 280,
       originalComment: config.comment,
+      study: config.study,
+      condition: config.condition,
     };
   },
   computed: {
@@ -53,12 +55,24 @@ export default {
       return this.minLength - this.comment.length
     },
     instruction() {
-      return this.study === 1 ? "Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: " : "Considering the commenting rules of the forum and the bot's process for recommendation, please finalize your comment and enter it again below for publication:"
+      if (this.study === 1) {
+        if (this.condition === 1) {
+          return "Considering the commenting rules of the forum, please finalize your comment and enter it again below for publication:"
+        }
+        
+        return "Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: "
+      }
+
+      if (this.condition === 1) {
+        return "Considering the commenting rules of the forum and the bot's process for recommendation, please finalize your comment and enter it again below for publication:"
+      }
+      return "Considering the commenting rules of the forum and the bot's process for moderation, please finalize your comment and enter it again below for publication:"
     },
   },
   watch: {
     isFinished(val) {
       if (val) {
+        config.finalComment = this.comment
         emitter.emit('step-finished', {
           type: 'resubmit-comment',
           input: {

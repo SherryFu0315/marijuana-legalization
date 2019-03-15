@@ -247,11 +247,11 @@ export default {
       }
     },
     voteLike() {
-      this.like = this.like === true ? undefined : true;
+      this.like = this.like === true ? null : true;
       firebase.database().ref(this.reactionsRef('like')).set(this.like)
     },
     voteDislike() {
-      this.like = this.like === false ? undefined : false;
+      this.like = this.like === false ? null : false;
       firebase.database().ref(this.reactionsRef('like')).set(this.like)
     },
     toggleReplies() {

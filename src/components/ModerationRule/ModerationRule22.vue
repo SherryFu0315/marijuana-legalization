@@ -17,10 +17,10 @@
     <p><span class="highlight">Comment - 4:</span>  “You either trust in God or think you are smarter than him as you believe in this crooked science where there is no consensus.”<br><span class="highlight">Bot assessment: Appropriate</span></p>
     <form>
       <label class="highlight">Your task:</label>
+      <p>Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?</p>
       <el-input
         type="textarea"
         :rows="4"
-        placeholder="Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate? "
         v-model="explanation">
       </el-input>
       <p class="error" v-if="isFinished === false">Min length is {{minLength}} characters, {{remainingLength}} remaining.</p>
