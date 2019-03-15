@@ -27,10 +27,14 @@
                   <template v-else-if="study === 2 && condition === 2">
                     <p><strong>The moderation decision is made based on our comment policy.</strong></p>
                     <ul>
-                      <li>abusive, defamatory, offensive or disparaging (ie. on the basis of disability, ethnicity, gender, or otherwise).</li>
-                      <li>attacks or threatens another person, threatens or promotes violence, wishes for harm to befall another person</li>
-                      <li>stalk or harass another person, discourage participation by others</li>
-                      <li>any type of advertisements</li>
+                      <p>Commentators in this forum are instructed to observe the following rules:</p>
+                      <ul>
+                        <li>Abusive, defamatory, offensive or disparaging comments on the basis of disability, ethnicity, gender, or otherwise are forbidden.</li>
+                        <li>Comments that are attacks or threaten another person, promote violence, wish for harm to befall another person are forbidden.</li>
+                        <li>Stalking or harassing another person and any form of discouraging participation by others are forbidden.</li>
+                        <li>Misrepresentation of comments, user profiles, posting advertisements, and all forms of spamming are forbidden. </li>
+                        <li>The forum administrators reserve the right to remove any comment for any reason. They may also bar individuals who break the above commenting rules.</li>
+                      </ul>
                     </ul>
                   </template>
                   <template v-else>
