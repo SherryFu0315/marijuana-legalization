@@ -212,7 +212,7 @@ export default {
       return (this.isReply ? `${this.user.id}/reactions/${this.parentComment.id}/replies/${this.comment.id}/` : `${this.user.id}/reactions/${this.comment.id}/`) + endpoint
     },
     report() {
-      MessageBox.alert('Thanks for reporting an abusive message!', undefined, {
+      MessageBox.alert('Thank you for your feedback!', undefined, {
         showConfirmButton: true,
         confirmButtonText: 'Back to discussion',
         closeOnClickModal: true,
