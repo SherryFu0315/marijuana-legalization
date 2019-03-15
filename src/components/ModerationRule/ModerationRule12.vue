@@ -16,7 +16,7 @@
     <p><span class="highlight">Comment - 3:</span> “Some are just poorly educated, ultimately not their fault for being uninformed and ignorant. I blame the American educational system.”<br><span class="highlight">Bot assessment: Not Appropriate</span></p>
     <p><span class="highlight">Comment - 4:</span> “You either trust in God or think you are smarter than him as you believe in this crooked science where there is no consensus.”<br><span class="highlight">Bot assessment: Appropriate</span></p>
     <h3>How the moderation bot works:</h3>
-    <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of inappropriate score for each comment. </p>
+    <p>Using natural language processing techniques, the bot assesses the words used in a comment and derives a <span class="highlight">probability</span> of inappropriateness score for each comment. </p>
     <p>Then, <span class="highlight">a cutoff on the probability score (0 to 1)</span> is determined to classify each comment as inappropriate or not. For example, all comments with a probability score of higher than 0.5 can be classified as inappropriate.</p>
     <p><span class="highlight">The cutoff that is used by the bot can lead to classification errors,</span> such as:</p>
     <ul>
@@ -27,7 +27,7 @@
     <p class="center">
       <img src="static/study1.jpg"/>
     </p>
-    <p>Note: In the comments and the discussion forum you’ll see in the next steps, <span class="highlight">the bot is designed to be <u>lenient</u></span>.</p>
+    <p class="highlight2">Note: In the comments and the discussion forum you’ll see in the next steps, <span class="highlight">the bot is designed to be <u>lenient</u></span>.</p>
   </article>
 </template>
 
@@ -77,5 +77,13 @@ label {
 }
 img {
   width: 80%;
+}
+.highlight2 {
+  background: rgba(255, 251, 231, 1);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 3px;
+  word-break: break-word;
+  margin: 8px;
+  padding: 16px;
 }
 </style>

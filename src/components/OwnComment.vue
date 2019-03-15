@@ -3,7 +3,7 @@
     <h1>Please resubmit your comment</h1>
     <p>This is a draft of your comment that you summarized before:</p>
     <p class="original-comment">{{originalComment}}</p>
-    <p>Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: </p>
+    <p>{{instruction}}</p>
     <label class="username">{{username}}</label>
     <el-input
       type="textarea"
@@ -51,6 +51,9 @@ export default {
     },
     remainingLength() {
       return this.minLength - this.comment.length
+    },
+    instruction() {
+      return this.study === 1 ? "Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: " : "Considering the commenting rules of the forum and the bot's process for recommendation, please finalize your comment and enter it again below for publication:"
     },
   },
   watch: {

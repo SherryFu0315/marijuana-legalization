@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       content: this.comment ? `@${this.comment.nickname} ` : '',
-      minLength: 280,
+      minLength: this.main ? 280 : 1,
     }
   },
   computed: {

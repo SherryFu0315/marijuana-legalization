@@ -20,8 +20,9 @@
                   <template v-if="study === 2 && condition === 1">
                     <p><strong>The selection decision is made based on our comment policy.</strong></p>
                     <ul>
-                      <li>comments that represent a range of views and are judged the most interesting or thoughtful.</li>
-                      <li>comments from a particular region, or readers with first-hand knowledge of an issue.</li>
+                      <li>Commenters in this forum are instructed to be civil in addressing and referencing other commenters and stay focused on the subject at hand.</li>
+                      <li>Comments represent a range of views and are judged the most interesting or thoughtful.</li>
+                      <li>In some cases, comments may be specifically highlighted to showcase commentary from a particular region, or readers with first-hand knowledge of an issue.</li>
                     </ul>
                   </template>
                   <template v-else-if="study === 2 && condition === 2">

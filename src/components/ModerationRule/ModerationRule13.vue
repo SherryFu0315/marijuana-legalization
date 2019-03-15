@@ -27,7 +27,7 @@
     <p class="center">
       <img src="static/study1.jpg"/>
     </p>
-    <p>Note: In the comments and the discussion forum you’ll see in the next steps, <span class="highlight">the bot is designed to be <u>strict</u></span>.</p>
+    <p class="highlight2">Note: In the comments and the discussion forum you’ll see in the next steps, <span class="highlight">the bot is designed to be <u>strict</u></span>.</p>
   </article>
 </template>
 
@@ -77,5 +77,13 @@ label {
 }
 img {
   width: 80%;
+}
+.highlight2 {
+  background: rgba(255, 251, 231, 1);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 3px;
+  word-break: break-word;
+  margin: 8px;
+  padding: 16px;
 }
 </style>
