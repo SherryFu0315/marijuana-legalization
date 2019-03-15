@@ -2,7 +2,7 @@
   <article>
     <h1>Please resubmit your comment</h1>
     <p>This is a draft of your comment that you summarized before:</p>
-    <blockquote>{{originalComment}}</blockquote>
+    <p class="original-comment">{{originalComment}}</p>
     <p>Considering the commenting rules of the forum and your review of five other comments from other users, please finalize your comment and enter it again below for publication: </p>
     <label class="username">{{username}}</label>
     <el-input
@@ -137,5 +137,13 @@ hr {
 .error {
   color: #BD1515;
   font-size: 12px;
+}
+.original-comment {
+  background: #f5f5f5;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 3px;
+  word-break: break-word;
+  margin: 8px;
+  padding: 16px;
 }
 </style>
