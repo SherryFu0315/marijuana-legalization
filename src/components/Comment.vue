@@ -18,7 +18,7 @@
                   v-show="attitude === undefined && reported === undefined">
                   <img slot="reference" class="help" src="../assets/help.png">
                   <template v-if="study === 2 && condition === 1">
-                    <p><strong>The selection decision is made based on our comment policy.</strong></p>
+                    <p><strong>The recommendation decision is made based on our comment policy.</strong></p>
                     <ul>
                       <li>Commenters in this forum are instructed to be civil in addressing and referencing other commenters and stay focused on the subject at hand.</li>
                       <li>Comments represent a range of views and are judged the most interesting or thoughtful.</li>
