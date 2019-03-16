@@ -151,4 +151,8 @@ export default () => new Promise((resolve) => {
 
 export const getComments = () => comments
 export const getReplies = (commentId) => replies[commentId] || []
+export const updateReply = (commentId, replyId, key, value) => {
+  const reply = replies[commentId].find(({ id }) => id === replyId)
+  reply[key] = value
+}
 export const getPeerReviews = () => peerReviews

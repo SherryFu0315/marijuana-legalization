@@ -96,7 +96,7 @@
 import firebase from 'firebase'
 import { MessageBox } from 'element-ui'
 import ReplyBox from './ReplyBox.vue'
-import { getReplies } from '../data'
+import { getReplies, updateReply } from '../data'
 import emitter from '../emitter'
 import config from '../config'
 
@@ -111,9 +111,9 @@ export default {
     const isReply = !!this.parentComment 
 
     let replies = getReplies(this.comment.id);
-    let like = undefined
-    let attitude = undefined
-    let reported = undefined
+    let like = this.comment._like
+    let attitude = this.comment._attitude
+    let reported = this.comment._reported
 
     if (this.savedData.reactions) {
       if (!isReply) {
@@ -221,10 +221,18 @@ export default {
       });
       firebase.database().ref(this.reactionsRef('reported')).set(true)
       this.reported = true;
+      
+      if (this.isReply) {
+        updateReply(this.parentComment.id, this.comment.id, '_reported', true)
+      }
     },
     confirm() {
-      firebase.database().ref(this.reactionsRef('attitude')).set(true)
+      firebase.database().ref(this.reactionsRef('_attitude')).set(true)
       this.attitude = true;
+      
+      if (this.isReply) {
+        updateReply(this.parentComment.id, this.comment.id, '_attitude', true)
+      }
     },
     unflag() {
       MessageBox.alert(`Thank you for your help. Your unflagging action has been reported${this.whom ? ` to the ${this.whom}` : ''}.`, undefined, {
@@ -235,24 +243,44 @@ export default {
       });
       firebase.database().ref(this.reactionsRef('attitude')).set(false)
       this.attitude = false;
+      
+      if (this.isReply) {
+        updateReply(this.parentComment.id, this.comment.id, '_attitude', false)
+      }
     },
     change() {
       if (this.attitude !== undefined) {
         firebase.database().ref(this.reactionsRef('attitude')).set(null)
         this.attitude = undefined;
+      
+        if (this.isReply) {
+          updateReply(this.parentComment.id, this.comment.id, '_attitude', undefined)
+        }
       }
       if (this.reported !== undefined) {
         firebase.database().ref(this.reactionsRef('reported')).set(null)
         this.reported = undefined;
+      
+        if (this.isReply) {
+          updateReply(this.parentComment.id, this.comment.id, '_reported', undefined)
+        }
       }
     },
     voteLike() {
       this.like = this.like === true ? null : true;
       firebase.database().ref(this.reactionsRef('like')).set(this.like)
+      
+      if (this.isReply) {
+        updateReply(this.parentComment.id, this.comment.id, '_like', this.like)
+      }
     },
     voteDislike() {
       this.like = this.like === false ? null : false;
       firebase.database().ref(this.reactionsRef('like')).set(this.like)
+      
+      if (this.isReply) {
+        updateReply(this.parentComment.id, this.comment.id, '_like', this.like)
+      }
     },
     toggleReplies() {
       this.isShowingReplies = !this.isShowingReplies
