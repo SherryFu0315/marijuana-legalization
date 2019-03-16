@@ -14,7 +14,7 @@
     <p><span class="highlight">Comment - 4:</span>   “They are blatantly ignoring a fact that 98% of scientists agree are real. It is okay to have your own opinion about how we should deal with climate change, but no action at all is selfish because we are destroying the world for future generations.”<br><span class="highlight">Not selected for recommendation by the bot</span></p>
     <form>
       <label class="highlight">Your task:</label>
-      <p>Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?</p>
+      <p>Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 are recommended by the bot whereas comments 2 and 4 are not recommended?</p>
       <el-input
         type="textarea"
         :rows="4"
