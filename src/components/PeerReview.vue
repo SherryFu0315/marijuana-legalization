@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     isFinished() {
-      return this.ratingTouched && (!this.bot || this.attitude !== undefined)
+      return this.ratingTouched && (this.attitude !== undefined)
     }
   },
   watch: {
