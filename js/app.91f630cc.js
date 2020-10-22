@@ -823,7 +823,7 @@
                                 id: a,
                                 nickname: o,
                                 uid: r,
-                                flagInfo: 1 === n.study ? (5||3) === n.condition ? c : l : void 0
+                                flagInfo: 1 === n.study ? 2 === n.condition ? l : 1 === n.study ? 3 === n.condition ? c : 1 === n.study ? 4 === n.condition ? l : 1 === n.study ? 5 === n.condition ? c : void 0
                             })
                         }), s = !0, r()
                     }), fetch("static/".concat(n.study, "/replies.csv")).then(function(e) {
@@ -1375,7 +1375,9 @@
                         },
                         expression: "explanation"
                     }
-                }), [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made an error in assessing comment #3 and $4 incorrectly?")]), i("el-input", {
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                }, [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made an error in assessing comment #3 and #4 incorrectly?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
