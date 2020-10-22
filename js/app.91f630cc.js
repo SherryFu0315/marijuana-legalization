@@ -1377,6 +1377,20 @@
                     }
                 }), !1 === e.isFinished ? i("p", {
                     staticClass: "error"
+                }, [e._v("Your task - 2:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments 3 and 4?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
                 }, [e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
             },
             ct = [function() {
@@ -1466,6 +1480,20 @@
                 }, [e._v("For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:")]), e._m(2), e._m(3), e._m(4), e._m(5), i("form", [i("label", {
                     staticClass: "highlight"
                 }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                }, [e._v("Your task - 2:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments 3 and 4?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
@@ -1581,6 +1609,20 @@
                     }
                 }), !1 === e.isFinished ? i("p", {
                     staticClass: "error"
+                }, [e._v("Your task - 2:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments 3 and 4?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
                 }, [e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
             },
             yt = [function() {
@@ -1670,6 +1712,20 @@
                 }, [e._v("For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:")]), e._m(2), e._m(3), e._m(4), e._m(5), i("form", [i("label", {
                     staticClass: "highlight"
                 }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                }, [e._v("Your task - 2:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments 3 and 4?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
