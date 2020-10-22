@@ -823,7 +823,7 @@
                                 id: a,
                                 nickname: o,
                                 uid: r,
-                                flagInfo: 1 === n.study ? 2 === n.condition ? l : 1 === n.study ? 3 === n.condition ? c : 1 === n.study ? 4 === n.condition ? l : 1 === n.study ? 5 === n.condition ? c : void 0
+                                flagInfo: 2 === n.study ? 1 === n.condition ? c : l : void 0
                             })
                         }), s = !0, r()
                     }), fetch("static/".concat(n.study, "/replies.csv")).then(function(e) {
@@ -1364,20 +1364,6 @@
                 }, [e._v("For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:")]), e._m(2), e._m(3), e._m(4), e._m(5), i("form", [i("label", {
                     staticClass: "highlight"
                 }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?")]), i("el-input", {
-                    attrs: {
-                        type: "textarea",
-                        rows: 4
-                    },
-                    model: {
-                        value: e.explanation,
-                        callback: function(t) {
-                            e.explanation = t
-                        },
-                        expression: "explanation"
-                    }
-                }), !1 === e.isFinished ? i("p", {
-                    staticClass: "error"
-                }, [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made an error in assessing comment #3 and #4 incorrectly?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
