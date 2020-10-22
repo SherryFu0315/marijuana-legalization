@@ -823,7 +823,7 @@
                                 id: a,
                                 nickname: o,
                                 uid: r,
-                                flagInfo: 2 === n.condition ? l : 3 === n.condition ? c : 4 === n.condition ? l : 5 === n.condition ? c : void 0
+                                flagInfo: 1 === n.study ? 2 === n.condition ? l : 1 === n.study ? 3 === n.condition ? c : 1 === n.study ? 4 === n.condition ? l : 1 === n.study ? 5 === n.condition ? c : void 0
                             })
                         }), s = !0, r()
                     }), fetch("static/".concat(n.study, "/replies.csv")).then(function(e) {
