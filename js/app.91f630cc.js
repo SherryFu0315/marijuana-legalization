@@ -1493,7 +1493,21 @@
                     }
                 }), !1 === e.isFinished ? i("p", {
                     staticClass: "error"
-                }, [e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
+                }, [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments #3 and #4?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                },[e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
             },
             pt = [function() {
                 var e = this,
@@ -1595,7 +1609,21 @@
                     }
                 }), !1 === e.isFinished ? i("p", {
                     staticClass: "error"
-                }, [e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
+                }, [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments #3 and #4?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                },[e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
             },
             yt = [function() {
                 var e = this,
@@ -1697,7 +1725,21 @@
                     }
                 }), !1 === e.isFinished ? i("p", {
                     staticClass: "error"
-                }, [e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
+                }, [e._v("Another task:")]), i("p", [e._v("Why do you think the bot made errors in assessing comments #3 and #4?")]), i("el-input", {
+                    attrs: {
+                        type: "textarea",
+                        rows: 4
+                    },
+                    model: {
+                        value: e.explanation,
+                        callback: function(t) {
+                            e.explanation = t
+                        },
+                        expression: "explanation"
+                    }
+                }), !1 === e.isFinished ? i("p", {
+                    staticClass: "error"
+                },[e._v("Min length is " + e._s(e.minLength) + " characters, " + e._s(e.remainingLength) + " remaining.")]) : e._e()], 1)])
             },
             Rt = [function() {
                 var e = this,
