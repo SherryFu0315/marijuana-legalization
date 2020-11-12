@@ -749,6 +749,10 @@
                 name: "No bot condition"
             }, {
                 study: 1,
+                condition: 6,
+                name: "EnhancedMindful + lenient"
+            }, {
+                study: 1,
                 condition: 5,
                 name: "Mindful + strict"
             }, {
@@ -1363,7 +1367,7 @@
                     staticClass: "highlight"
                 }, [e._v("For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:")]), e._m(2), e._m(3), e._m(4), e._m(5), i("form", [i("label", {
                     staticClass: "highlight"
-                }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?")]), i("el-input", {
+                }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate? Did the bot make any mistakes?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
@@ -1465,7 +1469,7 @@
                     staticClass: "highlight"
                 }, [e._v("For each comment, using natural language processing techniques, the bot assesses the words and derives a probability score of inappropriateness. For example, please see the bot assessments of the following comments posted for an article about climate change:")]), e._m(2), e._m(3), e._m(4), e._m(5), i("form", [i("label", {
                     staticClass: "highlight"
-                }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate?")]), i("el-input", {
+                }, [e._v("Your task:")]), i("p", [e._v("Think about how artificial intelligence-based software (bots) make assessments as in the above examples. Why are comments 1 and 3 assessed as not appropriate whereas comments 2 and 4 are appropriate? Did the bot make any mistakes?")]), i("el-input", {
                     attrs: {
                         type: "textarea",
                         rows: 4
