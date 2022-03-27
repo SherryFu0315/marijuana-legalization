@@ -104,12 +104,6 @@
       two comments (comment-1 and comment-2) and made mistakes with two comments
       (comment-3 and comment-4).
     </p>
-    <p>
-      A bot can be made “strict” or “lenient” in its assessment by tweaking the
-      cutoff point. Referring to the table below, if the bot were designed to be
-      more <u>strict</u>, <u>comment-4</u> would have been classified as
-      <u>inappropriate</u>.
-    </p>
     <p class="center">
       <img src="static/study1.jpg" />
     </p>

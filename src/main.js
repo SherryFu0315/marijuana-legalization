@@ -36,12 +36,13 @@ Vue.use(Rate)
 Vue.use(Radio)
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCSGV8SL8f15gYwwBuK2t6k2yJ0ke80qUQ",
-  authDomain: "march-version.firebaseapp.com",
-  databaseURL: "https://march-version.firebaseio.com",
-  projectId: "march-version",
-  storageBucket: "march-version.appspot.com",
-  messagingSenderId: "58729237152"
+  apiKey: "AIzaSyALHkxJvISPWUgVnkbtQCt4HP_U4TsdCKI",
+  authDomain: "march2022-69ef0.firebaseapp.com",
+  databaseURL: "https://march2022-69ef0-default-rtdb.firebaseio.com",
+  projectId: "march2022-69ef0",
+  storageBucket: "march2022-69ef0.appspot.com",
+  messagingSenderId: "850332051972",
+  appId: "1:850332051972:web:2147495efd0d0f3fb62351"
 })
 
 loadData().then(({ study, condition, name }) => {
