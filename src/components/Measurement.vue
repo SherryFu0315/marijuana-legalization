@@ -77,54 +77,54 @@
             Distractions and interruptions are less of a problem for me when I
             have a bot to cover the moderation task.
           </td>
-          <td><el-radio v-model="q5" label="1"></el-radio></td>
-          <td><el-radio v-model="q5" label="2"></el-radio></td>
-          <td><el-radio v-model="q5" label="3"></el-radio></td>
-          <td><el-radio v-model="q5" label="4"></el-radio></td>
-          <td><el-radio v-model="q5" label="5"></el-radio></td>
+          <td><el-radio v-model="q6" label="1"></el-radio></td>
+          <td><el-radio v-model="q6" label="2"></el-radio></td>
+          <td><el-radio v-model="q6" label="3"></el-radio></td>
+          <td><el-radio v-model="q6" label="4"></el-radio></td>
+          <td><el-radio v-model="q6" label="5"></el-radio></td>
         </tr>
         <tr>
           <td>
             Constantly monitoring the bot’s performance is a waste of time.
           </td>
-          <td><el-radio v-model="q5" label="1"></el-radio></td>
-          <td><el-radio v-model="q5" label="2"></el-radio></td>
-          <td><el-radio v-model="q5" label="3"></el-radio></td>
-          <td><el-radio v-model="q5" label="4"></el-radio></td>
-          <td><el-radio v-model="q5" label="5"></el-radio></td>
+          <td><el-radio v-model="q7" label="1"></el-radio></td>
+          <td><el-radio v-model="q7" label="2"></el-radio></td>
+          <td><el-radio v-model="q7" label="3"></el-radio></td>
+          <td><el-radio v-model="q7" label="4"></el-radio></td>
+          <td><el-radio v-model="q7" label="5"></el-radio></td>
         </tr>
         <tr>
           <td>
             Even when I have a lot to do, I am likely to watch the bot carefully
             for errors.
           </td>
-          <td><el-radio v-model="q5" label="1"></el-radio></td>
-          <td><el-radio v-model="q5" label="2"></el-radio></td>
-          <td><el-radio v-model="q5" label="3"></el-radio></td>
-          <td><el-radio v-model="q5" label="4"></el-radio></td>
-          <td><el-radio v-model="q5" label="5"></el-radio></td>
+          <td><el-radio v-model="q8" label="1"></el-radio></td>
+          <td><el-radio v-model="q8" label="2"></el-radio></td>
+          <td><el-radio v-model="q8" label="3"></el-radio></td>
+          <td><el-radio v-model="q8" label="4"></el-radio></td>
+          <td><el-radio v-model="q8" label="5"></el-radio></td>
         </tr>
         <tr>
           <td>
             It’s not 5 necessary to pay much attention to the bot when it
             catches the potential abusive comments on the forum.
           </td>
-          <td><el-radio v-model="q5" label="1"></el-radio></td>
-          <td><el-radio v-model="q5" label="2"></el-radio></td>
-          <td><el-radio v-model="q5" label="3"></el-radio></td>
-          <td><el-radio v-model="q5" label="4"></el-radio></td>
-          <td><el-radio v-model="q5" label="5"></el-radio></td>
+          <td><el-radio v-model="q9" label="1"></el-radio></td>
+          <td><el-radio v-model="q9" label="2"></el-radio></td>
+          <td><el-radio v-model="q9" label="3"></el-radio></td>
+          <td><el-radio v-model="q9" label="4"></el-radio></td>
+          <td><el-radio v-model="q9" label="5"></el-radio></td>
         </tr>
         <tr>
           <td>
             Carefully watching the bot takes time away from more important or
             interesting things.
           </td>
-          <td><el-radio v-model="q5" label="1"></el-radio></td>
-          <td><el-radio v-model="q5" label="2"></el-radio></td>
-          <td><el-radio v-model="q5" label="3"></el-radio></td>
-          <td><el-radio v-model="q5" label="4"></el-radio></td>
-          <td><el-radio v-model="q5" label="5"></el-radio></td>
+          <td><el-radio v-model="q10" label="1"></el-radio></td>
+          <td><el-radio v-model="q10" label="2"></el-radio></td>
+          <td><el-radio v-model="q10" label="3"></el-radio></td>
+          <td><el-radio v-model="q10" label="4"></el-radio></td>
+          <td><el-radio v-model="q10" label="5"></el-radio></td>
         </tr>
       </tbody>
     </table>
