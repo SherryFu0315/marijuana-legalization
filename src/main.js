@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import firebase from "firebase"
+import firebase from 'firebase';
 import 'element-ui/lib/theme-chalk/index.css'
 import './style.css'
 import { 
@@ -11,6 +11,7 @@ import {
   Popover,
   Input,
   Dialog,
+  Radio,
   Form,
   FormItem,
   Rate,
@@ -32,6 +33,7 @@ Vue.use(Dialog)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Rate)
+Vue.use(Radio)
 
 firebase.initializeApp({
   apiKey: "AIzaSyCSGV8SL8f15gYwwBuK2t6k2yJ0ke80qUQ",

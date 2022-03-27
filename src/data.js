@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Papa from 'papaparse'
 
 const list = [
@@ -5,36 +6,55 @@ const list = [
     study: 1,
     condition: 1,
     name: 'No bot condition',
+    id: "MA==",
   },
   {
     study: 1,
     condition: 5,
     name: 'Mindful + strict',
+    id: "MQ==",
   },
   {
     study: 1,
     condition: 4,
     name: 'Mindful + lenient',
+    id: "Mg==",
   },
   {
     study: 1,
     condition: 3,
     name: 'Routine + strict',
+    id: "Mw==",
   },
   {
     study: 1,
     condition: 2,
     name: 'Routine + lenient',
+    id: "NA==",
   },
   {
     study: 2,
     condition: 2,
     name: 'Moderation  bot',
+    id: "NQ==",
   },
   {
     study: 2,
     condition: 1,
-    name: 'Selection bot'
+    name: 'Selection bot',
+    id: "Ng==",
+  },
+  {
+    study: 1,
+    condition: 31,
+    name: 'New article 1',
+    id: "Nw==",
+  },
+  {
+    study: 1,
+    condition: 32,
+    name: 'New article 2',
+    id: "OA==",
   },
 ]
 
@@ -61,11 +81,9 @@ function shuffle(a) {
   }
   return a;
 }
-
 export default () => new Promise((resolve) => {
   const id = getQueryVariable('id')
   const which = parseInt(atob(id), 10)
-  console.log(which)
   const c = list[which]
 
   let isCommentsLoaded = false
@@ -74,6 +92,7 @@ export default () => new Promise((resolve) => {
   const finished = () => {
     if (isCommentsLoaded && isRepliesLoaded && isPeerReviewLoaded) {
       shuffle(comments)
+      shuffle(peerReviews)
       return resolve(c)
     }
     return
@@ -86,7 +105,7 @@ export default () => new Promise((resolve) => {
     .then((text) => {
       Papa.parse(text, { header: true }).data
         .forEach((item) => {
-          const { comment_text, down_count, up_count, message_id, nickname, user_id, Selection_bot, Moderation_bot } = item
+          const { comment_text, down_count, up_count, message_id, nickname, user_id, Recommendation_bot, Moderation_bot } = item
           comments.push({
             content: comment_text,
             like: up_count,
@@ -95,7 +114,7 @@ export default () => new Promise((resolve) => {
             nickname,
             uid: user_id,
 
-            flagInfo: c.study === 2 ? c.condition === 1 ? Selection_bot : Moderation_bot : undefined,
+            flagInfo: c.study === 2 ? c.condition === 1 ? Recommendation_bot : Moderation_bot : undefined,
           })
         })
       isCommentsLoaded = true
@@ -137,10 +156,10 @@ export default () => new Promise((resolve) => {
         .then((text) => {
           Papa.parse(text, { header: true }).data
             .forEach((item) => {
-              const { comment_text, Mindful_strict, Routine_strict } = item
+              const { comment_text } = item
               peerReviews.push({
                 content: comment_text,
-                bot: c.condition === 2 ? item['Routine_lenient '] : c.condition === 3 ? Routine_strict : c.condition === 4 ? item['Mindful_lenient '] : c.condition === 5 ? Mindful_strict : undefined,
+                bot: c.condition === 2 ? item['Routine'] : (c.condition === 3 || c.condition === 31 || c.condition === 32) ? item['Routine'] : c.condition === 4 ? item['Self_explanation'] : c.condition === 5 ? item['Self_explanation'] : undefined,
               })
             })
           isPeerReviewLoaded = true
