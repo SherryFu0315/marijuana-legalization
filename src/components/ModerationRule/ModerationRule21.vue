@@ -63,7 +63,7 @@
       <p>
         Think about how artificial intelligence-based software (bots) make
         assessments as in the above examples. Why the bot assessed comments 1
-        and 3 as not appropriate whereas comments 2 and 4 as appropriate?
+        and 3 as insightful whereas comments 2 and 4 as not insightful?
       </p>
       <el-input type="textarea" :rows="4" v-model="explanation"> </el-input>
       <p class="error" v-if="isFinished === false">
