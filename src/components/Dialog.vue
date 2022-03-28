@@ -43,6 +43,7 @@
       :key="peerReviewCurrent"
       :count="peerReviewCount"
       :current="peerReviewCurrent"
+      :id="peerReviewId"
       :content="peerReviewContent"
       :bot="peerReviewBot"
     />
@@ -133,6 +134,9 @@ export default {
       return (
         this.study === 1 && this.peerReviews[this.peerReviewCurrent].content
       );
+    },
+    peerReviewId() {
+      return this.study === 1 && this.peerReviews[this.peerReviewCurrent].id;
     },
     peerReviewBot() {
       return this.study === 1 && this.peerReviews[this.peerReviewCurrent].bot;

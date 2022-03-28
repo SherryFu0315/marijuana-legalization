@@ -67,7 +67,7 @@ import config from "../config";
 
 export default {
   name: "peer-review",
-  props: ["count", "current", "content", "bot"],
+  props: ["count", "current", "content", "bot", "id"],
   data() {
     return {
       attitude: undefined,
@@ -86,6 +86,7 @@ export default {
     isFinished(val) {
       if (val) {
         const input = {
+          id: this.id,
           index: this.current,
           content: this.content,
           rating: this.rating,

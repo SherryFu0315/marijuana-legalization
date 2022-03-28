@@ -5,7 +5,7 @@ const list = [
   {
     study: 1,
     condition: 1,
-    name: 'No bot condition',
+    name: 'No bot',
     id: "MA==",
   },
   {
@@ -17,13 +17,13 @@ const list = [
   {
     study: 1,
     condition: 4,
-    name: 'Mindful + lenient',
+    name: 'Self-explanation',
     id: "Mg==",
   },
   {
     study: 1,
     condition: 3,
-    name: 'Routine + strict',
+    name: 'Routine',
     id: "Mw==",
   },
   {
@@ -114,10 +114,11 @@ export default () => new Promise((resolve) => {
             nickname,
             uid: user_id,
 
-            flagInfo: c.study === 2 ? c.condition === 1 ? Recommendation_bot : Moderation_bot : undefined,
+            flagInfo: c.study === 2 ? c.condition === 1 ? Recommendation_bot : Moderation_bot : Moderation_bot,
           })
         })
       isCommentsLoaded = true
+      console.log()
       finished()
     })
   
@@ -144,6 +145,7 @@ export default () => new Promise((resolve) => {
           replies[message_id_default] = [reply]
         }
       })
+      console.log(comments, replies)
       isRepliesLoaded = true
       finished()
     })
@@ -156,13 +158,15 @@ export default () => new Promise((resolve) => {
         .then((text) => {
           Papa.parse(text, { header: true }).data
             .forEach((item) => {
-              const { comment_text } = item
+              const { id, comment_text } = item
               peerReviews.push({
+                id: id,
                 content: comment_text,
                 bot: c.condition === 2 ? item['Routine'] : (c.condition === 3 || c.condition === 31 || c.condition === 32) ? item['Routine'] : c.condition === 4 ? item['Self_explanation'] : c.condition === 5 ? item['Self_explanation'] : undefined,
               })
             })
           isPeerReviewLoaded = true
+          console.log(peerReviews)
           finished()
         })
     }

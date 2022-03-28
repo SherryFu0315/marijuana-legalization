@@ -41,7 +41,7 @@
           <td><el-radio v-model="q2" label="5"></el-radio></td>
         </tr>
         <tr>
-          <td>The bot should be used to ease users’ workload.</td>
+          <td>The bot should be used to ease users' workload.</td>
           <td><el-radio v-model="q3" label="1"></el-radio></td>
           <td><el-radio v-model="q3" label="2"></el-radio></td>
           <td><el-radio v-model="q3" label="3"></el-radio></td>
@@ -73,10 +73,7 @@
           <td><el-radio v-model="q5" label="5"></el-radio></td>
         </tr>
         <tr>
-          <td>
-            Distractions and interruptions are less of a problem for me when I
-            have a bot to cover the moderation task.
-          </td>
+          <td>Please choose 2 (Somewhat disagree) for this item.</td>
           <td><el-radio v-model="q6" label="1"></el-radio></td>
           <td><el-radio v-model="q6" label="2"></el-radio></td>
           <td><el-radio v-model="q6" label="3"></el-radio></td>
@@ -85,7 +82,8 @@
         </tr>
         <tr>
           <td>
-            Constantly monitoring the bot’s performance is a waste of time.
+            Distractions and interruptions are less of a problem for me when I
+            have a bot to cover the moderation task.
           </td>
           <td><el-radio v-model="q7" label="1"></el-radio></td>
           <td><el-radio v-model="q7" label="2"></el-radio></td>
@@ -95,8 +93,7 @@
         </tr>
         <tr>
           <td>
-            Even when I have a lot to do, I am likely to watch the bot carefully
-            for errors.
+            Constantly monitoring the bot's performance is a waste of time.
           </td>
           <td><el-radio v-model="q8" label="1"></el-radio></td>
           <td><el-radio v-model="q8" label="2"></el-radio></td>
@@ -106,8 +103,8 @@
         </tr>
         <tr>
           <td>
-            It’s not 5 necessary to pay much attention to the bot when it
-            catches the potential abusive comments on the forum.
+            Even when I have a lot to do, I am likely to watch the bot carefully
+            for errors.
           </td>
           <td><el-radio v-model="q9" label="1"></el-radio></td>
           <td><el-radio v-model="q9" label="2"></el-radio></td>
@@ -117,14 +114,25 @@
         </tr>
         <tr>
           <td>
-            Carefully watching the bot takes time away from more important or
-            interesting things.
+            It's not 5 necessary to pay much attention to the bot when it
+            catches the potential abusive comments on the forum.
           </td>
           <td><el-radio v-model="q10" label="1"></el-radio></td>
           <td><el-radio v-model="q10" label="2"></el-radio></td>
           <td><el-radio v-model="q10" label="3"></el-radio></td>
           <td><el-radio v-model="q10" label="4"></el-radio></td>
           <td><el-radio v-model="q10" label="5"></el-radio></td>
+        </tr>
+        <tr>
+          <td>
+            Carefully watching the bot takes time away from more important or
+            interesting things.
+          </td>
+          <td><el-radio v-model="q11" label="1"></el-radio></td>
+          <td><el-radio v-model="q11" label="2"></el-radio></td>
+          <td><el-radio v-model="q11" label="3"></el-radio></td>
+          <td><el-radio v-model="q11" label="4"></el-radio></td>
+          <td><el-radio v-model="q11" label="5"></el-radio></td>
         </tr>
       </tbody>
     </table>
@@ -148,6 +156,7 @@ export default {
       q8: undefined,
       q9: undefined,
       q10: undefined,
+      q11: undefined,
     };
   },
   computed: {
@@ -162,7 +171,8 @@ export default {
         this.q7 &&
         this.q8 &&
         this.q9 &&
-        this.q10
+        this.q10 &&
+        this.q11
       );
     },
   },
@@ -180,6 +190,7 @@ export default {
           q8: this.q8,
           q9: this.q9,
           q10: this.q10,
+          q11: this.q11,
         };
 
         emitter.emit("step-finished", {

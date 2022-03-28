@@ -1,6 +1,6 @@
-Ground_truth,comment_text,no_bot,Self_explanation,Routine
-TP,all that was needed are more stoned Mormons Morons,,Bot assessment: Not Appropriate (84.77% likely to be toxic),Bot assessment: Not Appropriate (84.77% likely to be toxic)
-FP,"Legalise the darn thing on a National scale...and tax it like gasoline, alcohol and cigarettes. It's the same thing as those advocating stupid gun bans; you can take them away but people will always find a way to buy them.",,Bot assessment: Not Appropriate (74.47% likely to be toxic),Bot assessment: Not Appropriate (74.47% likely to be toxic)
-FP,How disgusting. more weed more more drug addicts.,,Bot assessment: Not Appropriate (80.45% likely to be toxic),Bot assessment: Not Appropriate (80.45% likely to be toxic)
-FP,Enjoy killing yourselves faster by smoking pot you. States with legal pot have sn increase in car accidents. Soon they will have a good test and put you in jail. Ex pot smoker here. Ruined my life. Clean now for 5 years. Lungs are a mess.,,Bot assessment: Not Appropriate (76.87% likely to be toxic),Bot assessment: Not Appropriate (76.87% likely to be toxic)
-FN,"Eric, you are a tr0ll, go find p0rn to watch d0rk. The adults are talking about reality",,Bot assessment: Appropriate,Bot assessment: Appropriate
+id,Ground_truth,comment_text,no_bot,Self_explanation,Routine
+1,TP,all that was needed are more stoned Mormons Morons,,Bot assessment: Not Appropriate (84.77% likely to be toxic),Bot assessment: Not Appropriate (84.77% likely to be toxic)
+2,FP,"Legalise the darn thing on a National scale...and tax it like gasoline, alcohol and cigarettes. It's the same thing as those advocating stupid gun bans; you can take them away but people will always find a way to buy them.",,Bot assessment: Not Appropriate (74.47% likely to be toxic),Bot assessment: Not Appropriate (74.47% likely to be toxic)
+3,FP,How disgusting. more weed more more drug addicts.,,Bot assessment: Not Appropriate (80.45% likely to be toxic),Bot assessment: Not Appropriate (80.45% likely to be toxic)
+4,FP,Enjoy killing yourselves faster by smoking pot you. States with legal pot have sn increase in car accidents. Soon they will have a good test and put you in jail. Ex pot smoker here. Ruined my life. Clean now for 5 years. Lungs are a mess.,,Bot assessment: Not Appropriate (76.87% likely to be toxic),Bot assessment: Not Appropriate (76.87% likely to be toxic)
+5,FN,"Eric, you are a tr0ll, go find p0rn to watch d0rk. The adults are talking about reality",,Bot assessment: Appropriate,Bot assessment: Appropriate
