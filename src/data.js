@@ -114,7 +114,7 @@ export default () => new Promise((resolve) => {
             nickname,
             uid: user_id,
 
-            flagInfo: c.study === 2 ? c.condition === 1 ? Recommendation_bot : Moderation_bot : Moderation_bot,
+            flagInfo: c.study === 2 ? (c.condition === 1 ? Recommendation_bot : Moderation_bot) : (c.condition === 1 ? undefined : Moderation_bot),
           })
         })
       isCommentsLoaded = true
